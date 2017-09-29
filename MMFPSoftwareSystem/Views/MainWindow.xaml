@@ -33,8 +33,18 @@
             <TabItem Header="Теория" 
                      Content="{Binding DUMMY}">
             </TabItem>
-            <TabItem Header="Контрольная часть">
-
+            <TabItem Header="Моделирование">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Text="{Binding DUMMY}"/>
+                    <Frame Grid.Column="1" Content="{Binding DUMMY}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Тестирование"
+                     Content="{Binding DUMMY}">
             </TabItem>
         </TabControl>
         <!--<TextBox Text="{Binding Test}" 
