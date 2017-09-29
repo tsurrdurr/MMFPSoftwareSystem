@@ -5,18 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMFPSoftwareSystem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="ММФП" Height="350" Width="525">
     <d:DesignProperties.DataContext>
         <local:MainViewModel />
     </d:DesignProperties.DataContext>
     <Grid>
-        <TextBox Text="{Binding Test}" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Файл"/>
+            <MenuItem Header="Настройки"/>
+            <MenuItem Header="О программе">
+                <MenuItem Header="Помощь..."/>
+            </MenuItem>
+        </Menu>
+        <DockPanel Grid.Row="1">
+            <Label Content="Текущая тема: "/>
+            <ComboBox Text="{Binding DUMMY, FallbackValue=Список_тем}" 
+                      DataContext="{Binding DUMMY}"
+                      Margin="3"/>
+
+        </DockPanel>
+        <TabControl Grid.Row="2">
+            <TabItem Header="Теория" 
+                     Content="{Binding DUMMY}">
+            </TabItem>
+            <TabItem Header="Контрольная часть">
+
+            </TabItem>
+        </TabControl>
+        <!--<TextBox Text="{Binding Test}" 
                  Height="20" 
                  VerticalAlignment="Top"/>
         <Button Content="Text"
                 Command="{Binding SampleCommand}" 
                 Height="20" 
                 Margin="0,20,0,0" 
-                VerticalAlignment="Top"/>
+                VerticalAlignment="Top"/>-->
     </Grid>
 </Window>
+
