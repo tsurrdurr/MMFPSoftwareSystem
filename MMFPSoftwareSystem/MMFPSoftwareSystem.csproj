@@ -55,7 +55,43 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Command.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\GraphViewModel.cs" />
+    <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ModelingControlsViewModel.cs" />
+    <Compile Include="ViewModels\TestingViewModel.cs" />
+    <Compile Include="ViewModels\TheoryViewModel.cs" />
+    <Compile Include="Views\AdminView.xaml.cs">
+      <DependentUpon>AdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GraphView.xaml.cs">
+      <DependentUpon>GraphView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HelpView.xaml.cs">
+      <DependentUpon>HelpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModelingControlsView.xaml.cs">
+      <DependentUpon>ModelingControlsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestingView.xaml.cs">
+      <DependentUpon>TestingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TheoryView.xaml.cs">
+      <DependentUpon>TheoryView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GraphView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HelpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,6 +104,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ModelingControlsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TheoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

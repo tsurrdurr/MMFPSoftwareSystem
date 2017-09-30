@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMFPSoftwareSystem"
+        xmlns:view="clr-namespace:MMFPSoftwareSystem.Views"
         mc:Ignorable="d"
         Title="ММФП" Height="350" Width="525">
     <d:DesignProperties.DataContext>
         <local:MainViewModel />
     </d:DesignProperties.DataContext>
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -17,9 +19,13 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="Файл"/>
-            <MenuItem Header="Настройки"/>
+            <MenuItem Header="Настройки">
+                <MenuItem Header="Админка..."
+                          Command="{Binding OpenAdminCommand}"/>
+            </MenuItem>
             <MenuItem Header="О программе">
-                <MenuItem Header="Помощь..."/>
+                <MenuItem Header="Помощь..."
+                          Command="{Binding OpenHelpCommand}"/>
             </MenuItem>
         </Menu>
         <DockPanel Grid.Row="1">
@@ -30,8 +36,8 @@
 
         </DockPanel>
         <TabControl Grid.Row="2">
-            <TabItem Header="Теория" 
-                     Content="{Binding DUMMY}">
+            <TabItem Header="Теория">
+                <view:TheoryView DataContext="{Binding theoryViewModel}"/>
             </TabItem>
             <TabItem Header="Моделирование">
                 <Grid>
@@ -39,12 +45,14 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Text="{Binding DUMMY}"/>
-                    <Frame Grid.Column="1" Content="{Binding DUMMY}"/>
+                    <view:ModelingControlsView Grid.Column="0" 
+                                               DataContext="{Binding modelingControlsViewModel}"/>
+                    <view:GraphView Grid.Column="1"
+                                    DataContext="{Binding graphViewModel}"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Тестирование"
-                     Content="{Binding DUMMY}">
+            <TabItem Header="Тестирование">
+                <view:TestingView DataContext="{Binding testingViewModel}"/>
             </TabItem>
         </TabControl>
         <!--<TextBox Text="{Binding Test}" 
