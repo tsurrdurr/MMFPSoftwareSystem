@@ -55,44 +55,44 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Command.cs" />
-    <Compile Include="ViewModels\AdminViewModel.cs" />
-    <Compile Include="ViewModels\GraphViewModel.cs" />
-    <Compile Include="ViewModels\HelpViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\ModelingControlsViewModel.cs" />
-    <Compile Include="ViewModels\TestingViewModel.cs" />
-    <Compile Include="ViewModels\TheoryViewModel.cs" />
-    <Compile Include="Views\AdminView.xaml.cs">
+    <Compile Include="ViewModels\AdminViewModel\AdminViewModel.cs" />
+    <Compile Include="ViewModels\GraphViewModel\GraphViewModel.cs" />
+    <Compile Include="ViewModels\HelpViewModel\HelpViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModels\ModelingControlsViewModel\ModelingControlsViewModel.cs" />
+    <Compile Include="ViewModels\TestingViewModel\TestingViewModel.cs" />
+    <Compile Include="ViewModels\TheoryViewModel\TheoryViewModel.cs" />
+    <Compile Include="Views\Windows\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GraphView.xaml.cs">
+    <Compile Include="Views\UserControls\GraphView.xaml.cs">
       <DependentUpon>GraphView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HelpView.xaml.cs">
+    <Compile Include="Views\Windows\HelpView.xaml.cs">
       <DependentUpon>HelpView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ModelingControlsView.xaml.cs">
+    <Compile Include="Views\UserControls\ModelingControlsView.xaml.cs">
       <DependentUpon>ModelingControlsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TestingView.xaml.cs">
+    <Compile Include="Views\UserControls\TestingView.xaml.cs">
       <DependentUpon>TestingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TheoryView.xaml.cs">
+    <Compile Include="Views\UserControls\TheoryView.xaml.cs">
       <DependentUpon>TheoryView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\AdminView.xaml">
+    <Page Include="Views\Windows\AdminView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GraphView.xaml">
+    <Page Include="Views\UserControls\GraphView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HelpView.xaml">
+    <Page Include="Views\Windows\HelpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -100,19 +100,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ModelingControlsView.xaml">
+    <Page Include="Views\UserControls\ModelingControlsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TestingView.xaml">
+    <Page Include="Views\UserControls\TestingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TheoryView.xaml">
+    <Page Include="Views\UserControls\TheoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
