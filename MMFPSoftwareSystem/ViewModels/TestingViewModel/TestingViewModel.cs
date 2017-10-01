@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMFPSoftwareSystem
 {
-    public class TestingViewModel
+    public class TestingViewModel : Models.ITestingViewModel
     {
     }
 }

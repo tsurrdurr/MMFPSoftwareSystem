@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using MMFPSoftwareSystem.Models;
 using MMFPSoftwareSystem.Views;
 
 namespace MMFPSoftwareSystem
@@ -16,15 +17,31 @@ namespace MMFPSoftwareSystem
 
         public MainViewModel()
         {
-            
+            FillTopicsList();
+            BindViewModels(CurrentTopic);
         }
 
-        public ModelingControlsViewModel modelingControlsViewModel => _modelingControlsViewModel ?? (_modelingControlsViewModel = new ModelingControlsViewModel());
-        public GraphViewModel graphViewModel => _graphViewModel ?? (_graphViewModel = new GraphViewModel());
-        public TheoryViewModel theoryViewModel => _theoryViewModel ?? (_theoryViewModel = new TheoryViewModel());
-        public TestingViewModel testingViewModel => _testingViewModel ?? (_testingViewModel = new TestingViewModel());
-        
-        public Command SampleCommand => _sampleCommand ?? (_sampleCommand = new Command(SampleMethod));
+        public IModelingControlsViewModel modelingControlsViewModel => _modelingControlsViewModel;
+        public IGraphViewModel graphViewModel => _graphViewModel;
+        public ITheoryViewModel theoryViewModel => _theoryViewModel;
+        public ITestingViewModel testingViewModel => _testingViewModel;
+
+        public List<Models.Topic> TopicsList => _topicsList ?? (_topicsList = new List<Topic>());
+
+        public Models.Topic CurrentTopic
+        {
+            get { return _currentTopic ?? (_currentTopic = new Topic()); }
+            set
+            {
+                if (_currentTopic != value)
+                {
+                    _currentTopic = value;
+                    OnPropertyChanged(nameof(CurrentTopic));
+                    BindViewModels(CurrentTopic);
+                }
+            }
+        }
+
         public Command OpenAdminCommand => _openAdminCommand ?? (_openAdminCommand = new Command(OpenAdmin));
         public Command OpenHelpCommand => _openHelpCommand ?? (_openHelpCommand = new Command(OpenHelp));
         
@@ -49,28 +66,46 @@ namespace MMFPSoftwareSystem
         }
 
 
-        public string Test
+
+
+        private void FillTopicsList()
         {
-            get => "test";
-            set { OnPropertyChanged(nameof(Test)); }
+            var topic = CreatePredefinedTopic();
+            _topicsList = new List<Models.Topic> { topic };
+            _currentTopic = _topicsList.FirstOrDefault();
+            OnPropertyChanged(nameof(TopicsList));
         }
 
+        private Topic CreatePredefinedTopic()
+        {
+            var name = "Исследование процесса замедления нейтронов";
+            var topic = new Models.Topic(name, theoryViewModel, modelingControlsViewModel, graphViewModel, testingViewModel);
+            return topic;
+        }
 
-        private ModelingControlsViewModel _modelingControlsViewModel;
-        private GraphViewModel _graphViewModel;
-        private TheoryViewModel _theoryViewModel;
-        private TestingViewModel _testingViewModel;
+        private void BindViewModels(Topic currentTopic)
+        {
+            _modelingControlsViewModel = currentTopic.modelingControls;
+            _graphViewModel = currentTopic.graph;
+            _theoryViewModel = currentTopic.theory;
+            _testingViewModel = currentTopic.testing;
+            OnPropertyChanged(nameof(modelingControlsViewModel));
+            OnPropertyChanged(nameof(graphViewModel));
+            OnPropertyChanged(nameof(theoryViewModel));
+            OnPropertyChanged(nameof(testingViewModel));
+        }
+
+        private IModelingControlsViewModel _modelingControlsViewModel;
+        private IGraphViewModel _graphViewModel;
+        private ITheoryViewModel _theoryViewModel;
+        private ITestingViewModel _testingViewModel;
         private AdminViewModel _adminViewModel;
         private HelpViewModel _helpViewModel;
+        private List<Models.Topic> _topicsList;
 
-        private Command _sampleCommand;
         private Command _openAdminCommand;
         private Command _openHelpCommand;
-
-        private void SampleMethod()
-        {
-            Debug.Write("method");
-        }
+        private Models.Topic _currentTopic;
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

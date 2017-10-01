@@ -54,7 +54,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Abstract\IModelingControlsViewModel.cs" />
+    <Compile Include="Models\Abstract\ITheoryViewModel.cs" />
+    <Compile Include="Models\Abstract\IGraphViewModel.cs" />
+    <Compile Include="Models\Abstract\ITestingViewModel.cs" />
     <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\Topic.cs" />
     <Compile Include="ViewModels\AdminViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModels\GraphViewModel\GraphViewModel.cs" />
     <Compile Include="ViewModels\HelpViewModel\HelpViewModel.cs" />

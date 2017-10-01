@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using MMFPSoftwareSystem.Models;
 
 namespace MMFPSoftwareSystem
 {
-    public class GraphViewModel
+    public class GraphViewModel : IGraphViewModel
     {
         public void Draw()
         {

@@ -30,8 +30,8 @@
         </Menu>
         <DockPanel Grid.Row="1">
             <Label Content="Текущая тема: "/>
-            <ComboBox Text="{Binding DUMMY, FallbackValue=Список_тем}" 
-                      DataContext="{Binding DUMMY}"
+            <ComboBox ItemsSource="{Binding TopicsList}"
+                      SelectedValue="{Binding CurrentTopic, UpdateSourceTrigger=PropertyChanged}"
                       Margin="3"/>
 
         </DockPanel>

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMFPSoftwareSystem
+namespace MMFPSoftwareSystem.Models
 {
-    public class ModelingControlsViewModel : Models.IModelingControlsViewModel
+    public interface IGraphViewModel
     {
-
     }
 }

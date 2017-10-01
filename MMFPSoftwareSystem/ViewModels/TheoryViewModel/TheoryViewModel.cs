@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMFPSoftwareSystem
 {
-    public class TheoryViewModel
+    public class TheoryViewModel : Models.ITheoryViewModel
     {
     }
 }
