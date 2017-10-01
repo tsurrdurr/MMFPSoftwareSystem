@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MMFPSoftwareSystem.Models;
+using Newtonsoft.Json;
 using OxyPlot;
 
 namespace MMFPSoftwareSystem
@@ -16,6 +17,7 @@ namespace MMFPSoftwareSystem
             this.Graph = graph;
         }
 
+        [JsonIgnore]
         public Command PlotLogarithmCommand => _plotLogarithmCommand ?? (_plotLogarithmCommand = new Command(PlotLogarithm));
 
         public string LogarithmUpperLimitString

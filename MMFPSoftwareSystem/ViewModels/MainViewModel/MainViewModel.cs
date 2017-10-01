@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Win32;
 using MMFPSoftwareSystem.Models;
 using MMFPSoftwareSystem.Views;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MMFPSoftwareSystem
 {
@@ -44,7 +48,74 @@ namespace MMFPSoftwareSystem
 
         public Command OpenAdminCommand => _openAdminCommand ?? (_openAdminCommand = new Command(OpenAdmin));
         public Command OpenHelpCommand => _openHelpCommand ?? (_openHelpCommand = new Command(OpenHelp));
-        
+        public Command ExportModelingSettingsCommand => _exportModelingSettingsCommand ?? (_exportModelingSettingsCommand = new Command(ExportModelingSettings));
+        public Command ImportModelingSettingsCommand => _importModelingSettingsCommand ?? (_importModelingSettingsCommand = new Command(ImportModelingSettings));
+
+        private void ImportModelingSettings()
+        {
+            try
+            {
+                var dialog = new OpenFileDialog
+                {
+                    Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
+                };
+                if (dialog.ShowDialog() == true)
+                {
+                    var json = File.ReadAllText(dialog.FileName);
+                    IterateThroughProperties(json);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                throw;
+            }
+        }
+
+        private void IterateThroughProperties(string json)
+        {
+            JObject obj = JObject.Parse(json);
+            foreach (var pair in obj)
+            {
+                var propertiesInfo = modelingControlsViewModel
+                    .GetType()
+                    .GetProperties();
+
+                if (propertiesInfo.Any(x =>
+                    x.Name == pair.Key.ToString()))
+                {
+                    var targetPropertyInfo = propertiesInfo.Single(x => x.Name == pair.Key.ToString());
+                    targetPropertyInfo.SetValue(modelingControlsViewModel, pair.Value.ToString());
+                }
+            }
+        }
+
+        private void ExportModelingSettings()
+        {
+            try
+            {
+                var jsonSettings = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented
+                };
+                string output = JsonConvert.SerializeObject(modelingControlsViewModel, jsonSettings);
+                var dialog = new SaveFileDialog
+                {
+                    FileName = CurrentTopic.ToString() + " modeling settings",
+                    Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
+
+                };
+                if (dialog.ShowDialog() == true)
+                {
+                    File.WriteAllText(dialog.FileName, output);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+
         private void OpenAdmin()
         {
             var adminWindow = new AdminView
@@ -104,6 +175,8 @@ namespace MMFPSoftwareSystem
         private Command _openAdminCommand;
         private Command _openHelpCommand;
         private Models.Topic _currentTopic;
+        private Command _exportModelingSettingsCommand;
+        private Command _importModelingSettingsCommand;
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

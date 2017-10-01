@@ -19,6 +19,12 @@
         <Menu Grid.Row="0">
             <MenuItem Header="Файл"/>
             <MenuItem Header="Настройки">
+                <MenuItem Header="Моделирование...">
+                    <MenuItem Header="Экспорт..."
+                              Command="{Binding ExportModelingSettingsCommand}"/>
+                    <MenuItem Header="Импорт..."
+                              Command="{Binding ImportModelingSettingsCommand}"/>
+                </MenuItem>
                 <MenuItem Header="Админка..."
                           Command="{Binding OpenAdminCommand}"/>
             </MenuItem>
