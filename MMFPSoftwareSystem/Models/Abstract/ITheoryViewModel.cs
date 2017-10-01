@@ -8,5 +8,6 @@ namespace MMFPSoftwareSystem.Models
 {
     public interface ITheoryViewModel
     {
+        void OpenDocument(string path);
     }
 }

@@ -14,11 +14,11 @@ namespace MMFPSoftwareSystem
     public class MainViewModel : INotifyPropertyChanged
     {
 
-
         public MainViewModel()
         {
             FillTopicsList();
             BindViewModels(CurrentTopic);
+            theoryViewModel.OpenDocument(AppDomain.CurrentDomain.BaseDirectory + @"Resources\HelpPages\table of contents.html");
         }
 
         public IModelingControlsViewModel modelingControlsViewModel => _modelingControlsViewModel;
@@ -79,7 +79,7 @@ namespace MMFPSoftwareSystem
         private Topic CreatePredefinedTopic()
         {
             var name = "Исследование процесса замедления нейтронов";
-            var topic = new Models.Topic(name, theoryViewModel, modelingControlsViewModel, graphViewModel, testingViewModel);
+            var topic = new Models.Topic(name, new TheoryViewModel(), new ModelingControlsViewModel(), new GraphViewModel(), new TestingViewModel());
             return topic;
         }
 

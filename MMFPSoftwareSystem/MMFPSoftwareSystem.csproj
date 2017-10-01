@@ -67,6 +67,9 @@
     <Compile Include="ViewModels\ModelingControlsViewModel\ModelingControlsViewModel.cs" />
     <Compile Include="ViewModels\TestingViewModel\TestingViewModel.cs" />
     <Compile Include="ViewModels\TheoryViewModel\TheoryViewModel.cs" />
+    <Compile Include="Views\UserControls\Extra\HtmlBox.xaml.cs">
+      <DependentUpon>HtmlBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
     <Compile Include="Views\UserControls\TheoryView.xaml.cs">
       <DependentUpon>TheoryView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\UserControls\Extra\HtmlBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AdminView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +158,17 @@
   <ItemGroup>
     <Folder Include="Behaviors\" />
     <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\HelpPages\Page1.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\HelpPages\Page2.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\HelpPages\table of contents.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
