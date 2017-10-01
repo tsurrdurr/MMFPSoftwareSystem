@@ -3,10 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MMFPSoftwareSystem.Views"
+             xmlns:local="clr-namespace:MMFPSoftwareSystem"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Label Content="ln(x); x = 0.." Margin="3,3,0,3"/>
+            <TextBox Text="{Binding LogarithmUpperLimitString, UpdateSourceTrigger=PropertyChanged}" 
+
+                     Height="Auto" 
+                     Margin="3" 
+                     TextWrapping="Wrap" 
+                      Width="120"/>
+            <Button Content="Построить"
+                    Command="{Binding PlotLogarithmCommand}" 
+                    Margin="3"
+                    Width="150" Height="Auto"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label Content="Что-то ещё" Margin="3,3,0,3"/>
+        </StackPanel>
     </Grid>
 </UserControl>

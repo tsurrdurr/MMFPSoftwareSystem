@@ -65,9 +65,6 @@ namespace MMFPSoftwareSystem
             helpWindow.Show();
         }
 
-
-
-
         private void FillTopicsList()
         {
             var topic = CreatePredefinedTopic();
@@ -79,7 +76,8 @@ namespace MMFPSoftwareSystem
         private Topic CreatePredefinedTopic()
         {
             var name = "Исследование процесса замедления нейтронов";
-            var topic = new Models.Topic(name, new TheoryViewModel(), new ModelingControlsViewModel(), new GraphViewModel(), new TestingViewModel());
+            var graphVM = new GraphViewModel();
+            var topic = new Models.Topic(name, new TheoryViewModel(), new ModelingControlsViewModel(graphVM), graphVM, new TestingViewModel());
             return topic;
         }
 
