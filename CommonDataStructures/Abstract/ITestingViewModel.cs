@@ -8,5 +8,9 @@ namespace MMFPCommonDataStructures
 {
     public interface ITestingViewModel
     {
+        QuestionSet questionSet { get; set; }
+        void GetQuestions(QuestionSet set);
+        void GenerateResult();
+        void GeneratePDF();
     }
 }

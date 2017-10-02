@@ -149,9 +149,75 @@ namespace MMFPSoftwareSystem
         {
             var name = "Исследование процесса замедления нейтронов";
             var graphVM = new GraphViewModel();
-            var topic = new Topic(name, new TheoryViewModel(), new ModelingControlsViewModel(graphVM), graphVM, new TestingViewModel());
+            var topic = new Topic(name, new TheoryViewModel(), new ModelingControlsViewModel(graphVM), graphVM, new TestingViewModel(this));
             return topic;
         }
+
+        public QuestionSet CreatePredefinedQuestionSet()
+        {
+            return new QuestionSet
+            {
+                Name = "sample",
+                Sections = new List<QuestionSection>
+                {
+                    new QuestionSection
+                    {
+                        Name = "SampleSection",
+                        Questions = new List<Question>
+                        {
+                            new Question
+                            {
+                                Text = "Question text",
+                                Answers = new List<string>
+                                {
+                                    "Variant 1",
+                                    "Variant 2",
+                                    "Variant 3"
+                                }
+                            },
+                            new Question
+                            {
+                                Text = "Question text 2",
+                                Answers = new List<string>
+                                {
+                                    "Variant2 1",
+                                    "Variant2 2",
+                                    "Variant2 3"
+                                }
+                            }
+                        }
+                    },
+                    new QuestionSection
+                    {
+                        Name = "Section 2",
+                        Questions = new List<Question>
+                        {
+                            new Question
+                            {
+                                Text = "Section 2 Question text",
+                                Answers = new List<string>
+                                {
+                                    "Variant 1",
+                                    "Variant 2",
+                                    "Variant 3"
+                                }
+                            },
+                            new Question
+                            {
+                                Text = "Section 2  Question text 2",
+                                Answers = new List<string>
+                                {
+                                    "Variant2 1",
+                                    "Variant2 2",
+                                    "Variant2 3"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+        }
+
 
         private void BindViewModels(Topic currentTopic)
         {

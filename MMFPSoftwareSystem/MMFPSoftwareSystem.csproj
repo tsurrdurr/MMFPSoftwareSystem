@@ -94,6 +94,7 @@
     <Compile Include="Views\UserControls\Extra\HtmlBox.xaml.cs">
       <DependentUpon>HtmlBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\TestingViewModel\TestingCodeViewGenerator.cs" />
     <Compile Include="Views\Windows\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
