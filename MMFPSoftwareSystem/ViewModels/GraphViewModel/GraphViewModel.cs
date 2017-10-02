@@ -45,8 +45,6 @@ namespace MMFPSoftwareSystem
             }
         }
 
-
-
         private string _title;
         private IList<DataPoint> _points;
 

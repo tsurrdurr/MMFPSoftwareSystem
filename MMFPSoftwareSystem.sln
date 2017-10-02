@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMFPSoftwareSystem", "MMFPS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMFPCommonDataStructures", "CommonDataStructures\MMFPCommonDataStructures.csproj", "{12FB6FEF-4709-4AA2-8E7B-3BA096185D94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMFPAdminka", "MMFPAdminka\MMFPAdminka.csproj", "{F7E02846-CFE7-42D6-AC5F-9502D8B88DD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{12FB6FEF-4709-4AA2-8E7B-3BA096185D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12FB6FEF-4709-4AA2-8E7B-3BA096185D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12FB6FEF-4709-4AA2-8E7B-3BA096185D94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7E02846-CFE7-42D6-AC5F-9502D8B88DD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7E02846-CFE7-42D6-AC5F-9502D8B88DD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7E02846-CFE7-42D6-AC5F-9502D8B88DD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7E02846-CFE7-42D6-AC5F-9502D8B88DD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

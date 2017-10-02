@@ -1,28 +1,18 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MMFPCommonDataStructures;
 
-namespace MMFPCommonDataStructures
+namespace MMFPAdminka
 {
-    public class QuestionSection : INotifyPropertyChanged
+    class MainViewModel : INotifyPropertyChanged
     {
-        private string _name;
-        private IEnumerable<Question> _questions;
+        private QuestionSet _questions;
 
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
-            }
-        }
-
-        public IEnumerable<Question> Questions
+        public QuestionSet Questions
         {
             get { return _questions; }
             set
