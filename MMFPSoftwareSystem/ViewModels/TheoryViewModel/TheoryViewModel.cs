@@ -6,10 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MMFPCommonDataStructures;
 
 namespace MMFPSoftwareSystem
 {
-    public class TheoryViewModel : Models.ITheoryViewModel, INotifyPropertyChanged
+    public class TheoryViewModel : ITheoryViewModel, INotifyPropertyChanged
     {
 
         public string HtmlPath

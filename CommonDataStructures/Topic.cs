@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMFPSoftwareSystem.Models
+namespace MMFPCommonDataStructures
 {
     public class Topic
     {
@@ -14,6 +14,7 @@ namespace MMFPSoftwareSystem.Models
                      IGraphViewModel graph,
                      ITestingViewModel testing)
         {
+            
             this.Name = Name;
             this.theory = theory;
             this.graph = graph;

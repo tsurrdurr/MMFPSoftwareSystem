@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using OxyPlot;
 
-namespace MMFPSoftwareSystem.Models
+namespace MMFPCommonDataStructures
 {
     public interface IGraphViewModel
     {
-        void PlotGraph(List<DataPoint> coordinates, string header);
+        void PlotGraph(List<Tuple<double, double>> coordinates, string header);
     }
 }

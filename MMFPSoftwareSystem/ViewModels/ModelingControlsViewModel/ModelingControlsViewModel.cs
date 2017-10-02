@@ -4,13 +4,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MMFPSoftwareSystem.Models;
+using MMFPCommonDataStructures;
 using Newtonsoft.Json;
-using OxyPlot;
 
 namespace MMFPSoftwareSystem
 {
-    public class ModelingControlsViewModel : Models.IModelingControlsViewModel, INotifyPropertyChanged
+    public class ModelingControlsViewModel : IModelingControlsViewModel, INotifyPropertyChanged
     {
         public ModelingControlsViewModel(IGraphViewModel graph)
         {
@@ -43,10 +42,10 @@ namespace MMFPSoftwareSystem
         private void PlotLogarithm()
         {
             var title = "ln(x)";
-            var points = new List<DataPoint>();
+            var points = new List<Tuple<double, double>>();
             for (int i = 0; i < _logarithmUpperLimitString; i++)
             {
-                points.Add(new DataPoint(i, Math.Log(i)));
+                points.Add(Tuplify(i, Math.Log(i)));
             }
             if (points.Count > 1)
             {
@@ -54,6 +53,10 @@ namespace MMFPSoftwareSystem
             }
         }
 
+        private Tuple<double, double> Tuplify(double x, double y)
+        {
+            return new Tuple<double, double>(x, y);
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

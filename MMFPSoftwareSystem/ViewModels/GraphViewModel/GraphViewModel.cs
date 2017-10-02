@@ -5,21 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using MMFPSoftwareSystem.Models;
+using MMFPCommonDataStructures;
 using OxyPlot;
 
 namespace MMFPSoftwareSystem
 {
     public class GraphViewModel : IGraphViewModel, INotifyPropertyChanged
     {
-        public GraphViewModel()
-        {
-            
-        }
 
-        public void PlotGraph(List<DataPoint> coordinates, string header = "График")
+        public void PlotGraph(List<Tuple<double, double>> coordinates, string header = "График")
         {
-            Points = coordinates;
+            Points = TupleToDataPoint(coordinates); ;
             Title = header;
         }
 
@@ -49,9 +45,17 @@ namespace MMFPSoftwareSystem
             }
         }
 
+
+
         private string _title;
         private IList<DataPoint> _points;
 
+        private static List<DataPoint> TupleToDataPoint(List<Tuple<double, double>> coordinates)
+        {
+            var list = new List<DataPoint>();
+            coordinates.ForEach(x => list.Add(new DataPoint(x.Item1, x.Item2)));
+            return list;
+        }
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 

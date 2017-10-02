@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
-using MMFPSoftwareSystem.Models;
+using MMFPCommonDataStructures;
 using MMFPSoftwareSystem.Views;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+
 
 namespace MMFPSoftwareSystem
 {
@@ -30,9 +31,9 @@ namespace MMFPSoftwareSystem
         public ITheoryViewModel theoryViewModel => _theoryViewModel;
         public ITestingViewModel testingViewModel => _testingViewModel;
 
-        public List<Models.Topic> TopicsList => _topicsList ?? (_topicsList = new List<Topic>());
+        public List<Topic> TopicsList => _topicsList ?? (_topicsList = new List<Topic>());
 
-        public Models.Topic CurrentTopic
+        public Topic CurrentTopic
         {
             get { return _currentTopic ?? (_currentTopic = new Topic()); }
             set
@@ -139,7 +140,7 @@ namespace MMFPSoftwareSystem
         private void FillTopicsList()
         {
             var topic = CreatePredefinedTopic();
-            _topicsList = new List<Models.Topic> { topic };
+            _topicsList = new List<Topic> { topic };
             _currentTopic = _topicsList.FirstOrDefault();
             OnPropertyChanged(nameof(TopicsList));
         }
@@ -148,7 +149,7 @@ namespace MMFPSoftwareSystem
         {
             var name = "Исследование процесса замедления нейтронов";
             var graphVM = new GraphViewModel();
-            var topic = new Models.Topic(name, new TheoryViewModel(), new ModelingControlsViewModel(graphVM), graphVM, new TestingViewModel());
+            var topic = new Topic(name, new TheoryViewModel(), new ModelingControlsViewModel(graphVM), graphVM, new TestingViewModel());
             return topic;
         }
 
@@ -170,11 +171,11 @@ namespace MMFPSoftwareSystem
         private ITestingViewModel _testingViewModel;
         private AdminViewModel _adminViewModel;
         private HelpViewModel _helpViewModel;
-        private List<Models.Topic> _topicsList;
+        private List<Topic> _topicsList;
 
         private Command _openAdminCommand;
         private Command _openHelpCommand;
-        private Models.Topic _currentTopic;
+        private Topic _currentTopic;
         private Command _exportModelingSettingsCommand;
         private Command _importModelingSettingsCommand;
 
