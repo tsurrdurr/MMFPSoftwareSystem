@@ -102,8 +102,6 @@
                         <MenuItem Header="Редактировать ответ..."
                                   Command="{Binding AnswerCRUDCommand}"
                                   CommandParameter="{Binding SelectedQuestion}" />
-                        <MenuItem Header="Пометить как правильный"
-                                  Command="{Binding MarkAnswerCorrectCommand}" />
                     </ContextMenu>
                 </ListBox.ContextMenu>
             </ListBox>

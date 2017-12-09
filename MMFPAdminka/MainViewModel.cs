@@ -33,7 +33,6 @@ namespace MMFPAdminka
         private Answer _selectedAnswer;
         private Command _openTestCommand;
         private Command _saveTestCommand;
-        private Command _markAnswerCorrect;
 
         public QuestionSet Questions
         {
@@ -133,9 +132,6 @@ namespace MMFPAdminka
 
         public Command QuestionCRUDCommand => _questionCRUDCommand ?? (_questionCRUDCommand = new Command(EditQuestion));
         public Command AnswerCRUDCommand => _answerCrudCommand ?? (_answerCrudCommand = new Command(EditAnswer));
-        public Command MarkAnswerCorrectCommand => _markAnswerCorrect ?? (_markAnswerCorrect = new Command(MarkAnswerCorrect));
-
-
 
         private void OpenTest()
         {
@@ -204,11 +200,6 @@ namespace MMFPAdminka
             editAnswerDialog.Show();
         }
 
-        private void MarkAnswerCorrect()
-        {
-            //SelectedQuestion.EncodeAnswer(SelectedQuestion.Answers.ToList().IndexOf(SelectedAnswer));
-        }
-
         //        
         //        public ICommand AddQuestionCommand
         //        {
@@ -250,7 +241,7 @@ namespace MMFPAdminka
 
         private void AddSection()
         {
-            _questionSetSections.Add(new QuestionSection
+            QuestionSetSections.Add(new QuestionSection
             {
                 Name = "Новый раздел",
                 Questions = new ObservableCollection<Question>()
