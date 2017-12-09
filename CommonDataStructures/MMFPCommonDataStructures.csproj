@@ -49,6 +49,9 @@
     <Compile Include="Question.cs" />
     <Compile Include="QuestionSection.cs" />
     <Compile Include="QuestionSet.cs" />
+    <Compile Include="Students\Group.cs" />
+    <Compile Include="Students\GroupSet.cs" />
+    <Compile Include="Students\Student.cs" />
     <Compile Include="Topic.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
