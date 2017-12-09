@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -54,6 +57,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="EditAnswerDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditQuestionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditQuestionSectionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,6 +77,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EditAnswerDialog.xaml.cs">
+      <DependentUpon>EditAnswerDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditQuestionDialog.xaml.cs">
+      <DependentUpon>EditQuestionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditQuestionSectionDialog.xaml.cs">
+      <DependentUpon>EditQuestionSectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditAnswerViewModel.cs" />
+    <Compile Include="EditQuestionViewModel.cs" />
+    <Compile Include="EditQuestionSectionViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -69,6 +96,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\IQuestionAccessor.cs" />
+    <Compile Include="model\QuestionAccesors.cs" />
+    <Compile Include="model\StubQuestionAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +116,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,6 +129,10 @@
     <ProjectReference Include="..\CommonDataStructures\MMFPCommonDataStructures.csproj">
       <Project>{12fb6fef-4709-4aa2-8e7b-3ba096185d94}</Project>
       <Name>MMFPCommonDataStructures</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MMFPSoftwareSystem\MMFPSoftwareSystem.csproj">
+      <Project>{C47426DF-8EC1-4A82-8654-43E74810347A}</Project>
+      <Name>MMFPSoftwareSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

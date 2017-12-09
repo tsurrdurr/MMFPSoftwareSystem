@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMFPCommonDataStructures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,8 @@ namespace MMFPAdminka
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            var mainViewModel = new MainViewModel();
+            DataContext = mainViewModel;
         }
     }
 }

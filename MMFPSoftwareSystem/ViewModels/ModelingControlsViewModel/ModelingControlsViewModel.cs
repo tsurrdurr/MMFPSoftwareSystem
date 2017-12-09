@@ -21,7 +21,7 @@ namespace MMFPSoftwareSystem
 
         public string LogarithmUpperLimitString
         {
-            get { return _logarithmUpperLimitString.ToString(); }
+            get => _logarithmUpperLimitString.ToString();
             set
             {
                 if (Double.TryParse(value, out var doubleValue))

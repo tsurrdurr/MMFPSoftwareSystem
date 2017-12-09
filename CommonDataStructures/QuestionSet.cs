@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace MMFPCommonDataStructures
 {
     public class QuestionSet : INotifyPropertyChanged
     {
-        public IEnumerable<QuestionSection> Sections
+        public ObservableCollection<QuestionSection> Sections
         {
             get { return _sections; }
             set
             {
-                if (_sections != value)
-                {
-                    _sections = value;
-                    OnPropertyChanged(nameof(Sections));
-                }
+                if (_sections == value) return;
+                _sections = value;
+                OnPropertyChanged(nameof(Sections));
             }
         }
 
@@ -24,11 +23,9 @@ namespace MMFPCommonDataStructures
             get { return _name; }
             set
             {
-                if (_name != value)
-                {
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
+                if (_name == value) return;
+                _name = value;
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -40,7 +37,12 @@ namespace MMFPCommonDataStructures
         public string StudentGroup = null;
 
         private string _name;
-        private IEnumerable<QuestionSection> _sections;
+        private ObservableCollection<QuestionSection> _sections;
+
+        public override string ToString()
+        {
+            return Name;
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

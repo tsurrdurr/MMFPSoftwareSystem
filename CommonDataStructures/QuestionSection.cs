@@ -18,6 +18,7 @@ namespace MMFPCommonDataStructures
                 {
                     _name = value;
                     OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged(nameof(QuestionSection));
                 }
             }
         }
@@ -35,12 +36,18 @@ namespace MMFPCommonDataStructures
             }
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+            OnPropertyChanged(new PropertyChangedEventArgs("DisplayMember"));
         }
 
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)

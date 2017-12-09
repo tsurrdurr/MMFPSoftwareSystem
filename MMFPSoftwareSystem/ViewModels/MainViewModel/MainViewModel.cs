@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -158,7 +159,7 @@ namespace MMFPSoftwareSystem
             return new QuestionSet
             {
                 Name = "sample",
-                Sections = new List<QuestionSection>
+                Sections = new ObservableCollection<QuestionSection>
                 {
                     new QuestionSection
                     {
