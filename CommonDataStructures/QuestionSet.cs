@@ -11,11 +11,9 @@ namespace MMFPCommonDataStructures
             get { return _sections; }
             set
             {
-                if (_sections != value)
-                {
-                    _sections = value;
-                    OnPropertyChanged(nameof(Sections));
-                }
+                if (_sections == value) return;
+                _sections = value;
+                OnPropertyChanged(nameof(Sections));
             }
         }
 
@@ -24,11 +22,9 @@ namespace MMFPCommonDataStructures
             get { return _name; }
             set
             {
-                if (_name != value)
-                {
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
+                if (_name == value) return;
+                _name = value;
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -41,6 +37,11 @@ namespace MMFPCommonDataStructures
 
         private string _name;
         private IEnumerable<QuestionSection> _sections;
+
+        public override string ToString()
+        {
+            return Name;
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

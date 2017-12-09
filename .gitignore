@@ -16,3 +16,4 @@ push.cmd
 TestResults/
 .vs/
 /packages/
+.idea/

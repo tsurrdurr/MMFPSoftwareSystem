@@ -1,0 +1,21 @@
+﻿<Window x:Class="MMFPAdminka.EditQuestionSectionDialog"
+        x:Name="EditSectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MMFPAdminka"
+        mc:Ignorable="d"
+        Title="EditQuestionSectionDialog" Height="154.438" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label Content="Введите название раздела:"/>
+            <TextBox  DataContext="{Binding QuestionSection}" 
+                      Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      TextWrapping="Wrap" 
+                      VerticalScrollBarVisibility="Auto" 
+                      Height="69"/>
+            <Button Command="{Binding Save}" CommandParameter="{Binding ElementName=EditSectionWindow}" Content="Сохранить" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -23,7 +23,9 @@ namespace MMFPAdminka
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            var mainViewModel = new MainViewModel();
+            DataContext = mainViewModel;
+            //trvQuestionSections.ItemsSource = mainViewModel.QuestionSections;
         }
     }
 }

@@ -44,6 +44,11 @@ namespace MMFPCommonDataStructures
             }
         }
 
+        public override string ToString()
+        {
+            return Text;
+        }
+
         private string _text;
         private IEnumerable<string> _answers;
         private int? _selectedAnswer;
