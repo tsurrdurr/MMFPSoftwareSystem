@@ -41,16 +41,18 @@ namespace MMFPCommonDataStructures
                 {
                     if (e.NewItems?.Count > 0 && (e.Action == NotifyCollectionChangedAction.Add || e.Action == NotifyCollectionChangedAction.Replace))
                     {
-                        foreach (var col in e.NewItems.OfType<Answer>())
+
+                        foreach (var ans in e.NewItems.OfType<Answer>())
                         {
-                            col.PropertyChanged += UpdateCorrectAnswer;
+                            if (_answers.Count() <= 1) ans.IsCorrect = true;
+                            ans.PropertyChanged += UpdateCorrectAnswer;
                         }
                     }
                     if (e.OldItems?.Count > 0 && (e.Action == NotifyCollectionChangedAction.Remove || e.Action == NotifyCollectionChangedAction.Replace || e.Action == NotifyCollectionChangedAction.Reset))
                     {
-                        foreach (var col in e.OldItems.OfType<Answer>())
+                        foreach (var ans in e.OldItems.OfType<Answer>())
                         {
-                            col.PropertyChanged -= UpdateCorrectAnswer;
+                            ans.PropertyChanged -= UpdateCorrectAnswer;
                         }
                     }
                 };
@@ -67,12 +69,22 @@ namespace MMFPCommonDataStructures
             if (e.PropertyName == nameof(Answer.IsCorrect))
             {
                 Answer ans = sender as Answer;
+                ans.PropertyChanged -= UpdateCorrectAnswer;
                 var correctIndex = Answers.ToList().IndexOf(ans);
                 foreach (var item in Answers)
                 {
-                    if (item != ans) item.IsCorrect = false;
+                    if (item != ans)
+                    {
+                        item.PropertyChanged -= UpdateCorrectAnswer;
+                        item.IsCorrect = false;
+                        item.PropertyChanged += UpdateCorrectAnswer;
+
+                    }
                 }
+                ans.IsCorrect = true;
                 SelectedAnswer = correctIndex;
+                ans.PropertyChanged += UpdateCorrectAnswer;
+
             }
 
 
