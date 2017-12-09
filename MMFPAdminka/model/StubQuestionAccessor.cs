@@ -6,9 +6,9 @@ namespace MMFPAdminka.model
 {
     public class StubQuestionAccessor : IQuestionAccessor
     {
-        public List<QuestionSection> LoadQuestionSections()
+        public QuestionSet LoadQuestionSet()
         {
-            return new List<QuestionSection>
+            var content = new ObservableCollection<QuestionSection>
             {
                 new QuestionSection
                 {
@@ -38,6 +38,7 @@ namespace MMFPAdminka.model
                     })
                 }
             };
+            return new QuestionSet {Sections = content};
         }
 
         public void SaveQuestionSections(List<QuestionSection> sections)

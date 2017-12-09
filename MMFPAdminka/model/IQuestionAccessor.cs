@@ -5,7 +5,7 @@ namespace MMFPAdminka.model
 {
     public interface IQuestionAccessor
     {
-        List<QuestionSection> LoadQuestionSections();
+        QuestionSet LoadQuestionSet();
         void SaveQuestionSections(List<QuestionSection> sections);
     }
 }

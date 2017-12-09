@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace MMFPCommonDataStructures
 {
     public class QuestionSet : INotifyPropertyChanged
     {
-        public IEnumerable<QuestionSection> Sections
+        public ObservableCollection<QuestionSection> Sections
         {
             get { return _sections; }
             set
@@ -36,7 +37,7 @@ namespace MMFPCommonDataStructures
         public string StudentGroup = null;
 
         private string _name;
-        private IEnumerable<QuestionSection> _sections;
+        private ObservableCollection<QuestionSection> _sections;
 
         public override string ToString()
         {

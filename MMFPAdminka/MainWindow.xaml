@@ -20,7 +20,16 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid Row="0">
-            
+            <Menu >
+                <MenuItem Header="File">
+                    <MenuItem Header="Open test"
+                              Command="{Binding OpenTestCommand}"/>
+                    <MenuItem Header="Save test"
+                              Command="{Binding SaveTestCommand}"/>
+
+                </MenuItem>
+                    <MenuItem Header="About"/>
+            </Menu>
         </Grid>
         <Grid  Grid.Row="1" >
             <Grid.ColumnDefinitions>

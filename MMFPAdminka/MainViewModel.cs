@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
+using Microsoft.Win32;
 using MMFPAdminka.model;
 using MMFPCommonDataStructures;
 using MMFPSoftwareSystem;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MMFPAdminka
 {
@@ -26,10 +31,12 @@ namespace MMFPAdminka
         private Command _answerCrudCommand;
         private ObservableCollection<string> _answers;
         private string _selectedAnswer;
+        private Command _openTestCommand;
+        private Command _saveTestCommand;
 
         public QuestionSet Questions
         {
-            get => _questions;
+            get => _questions ?? new QuestionSet();
             set
             {
                 if (_questions == value) return;
@@ -40,11 +47,11 @@ namespace MMFPAdminka
 
         public ObservableCollection<QuestionSection> QuestionSetSections
         {
-            get => _questionSetSections ?? new ObservableCollection<QuestionSection>();
+            get => Questions.Sections ?? new ObservableCollection<QuestionSection>();
             set
             {
-                if (_questionSetSections == value) return;
-                _questionSetSections = value;
+                if (Questions.Sections == value) return;
+                Questions.Sections = value;
                 OnPropertyChanged(nameof(QuestionSetSections));
             }
         }
@@ -78,11 +85,15 @@ namespace MMFPAdminka
             set
             {
                 if (_selectedSection == value) return;
-                SectionsQuestions = value.Questions as ObservableCollection<Question>;
-                SelectedQuestion = SectionsQuestions.FirstOrDefault();
-                _selectedSection = value;
-                OnPropertyChanged(nameof(SelectedSection));
-                OnPropertyChanged(nameof(QuestionSetSections));
+                if (value != null)
+                {
+                    SectionsQuestions = value.Questions as ObservableCollection<Question>;
+                    SelectedQuestion = SectionsQuestions.FirstOrDefault();
+                    _selectedSection = value;
+                    OnPropertyChanged(nameof(SelectedSection));
+                    OnPropertyChanged(nameof(QuestionSetSections));
+                }
+
             }
         }
 
@@ -93,7 +104,7 @@ namespace MMFPAdminka
             get { return _selectedQuestion; }
             set
             {
-                if (_selectedQuestion == value) return;
+                if (_selectedQuestion == value || value == null) return;
                 _selectedQuestion = value;
                 Answers = _selectedQuestion.Answers as ObservableCollection<string>;
                 OnPropertyChanged(nameof(SelectedQuestion));
@@ -110,9 +121,10 @@ namespace MMFPAdminka
                 OnPropertyChanged(nameof(SelectedAnswer));
             }
         }
-
+        
+        public Command OpenTestCommand => _openTestCommand ?? (_openTestCommand = new Command(OpenTest));
+        public Command SaveTestCommand => _saveTestCommand ?? (_saveTestCommand = new Command(SaveTest));
         public Command AddSectionCommand => _addSectionCommand ?? (_addSectionCommand = new Command(AddSection));
-
         public Command AddQuestionCommand => _addQuestionCommand ?? (_addQuestionCommand = new Command(AddQuestion));
         public Command AddAnswerCommand => _addAnswerCommand ?? (_addAnswerCommand = new Command(AddAnswer));
 
@@ -120,6 +132,57 @@ namespace MMFPAdminka
 
         public Command QuestionCRUDCommand => _questionCRUDCommand ?? (_questionCRUDCommand = new Command(EditQuestion));
         public Command AnswerCRUDCommand => _answerCrudCommand ?? (_answerCrudCommand = new Command(EditAnswer));
+
+
+
+        private void OpenTest()
+        {
+            try
+            {
+                var dialog = new OpenFileDialog
+                {
+                    Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
+                };
+                if (dialog.ShowDialog() == true)
+                {
+                    var json = File.ReadAllText(dialog.FileName);
+                    ParseTest(json);
+                    OnPropertyChanged(nameof(Questions));
+                    OnPropertyChanged(nameof(QuestionSetSections));
+                    OnPropertyChanged(nameof(SectionsQuestions));
+
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                throw;
+            }
+        }
+
+        private void ParseTest(string json)
+        {
+            Questions = JsonConvert.DeserializeObject<QuestionSet>(json);
+        }
+
+        private void SaveTest()
+        {
+            var jsonSettings = new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented
+            };
+            string output = JsonConvert.SerializeObject(Questions, jsonSettings);
+            var dialog = new SaveFileDialog
+            {
+                FileName = "Новый тест",
+                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
+
+            };
+            if (dialog.ShowDialog() == true)
+            {
+                File.WriteAllText(dialog.FileName, output);
+            }
+        }
 
         private void EditSection()
         {
@@ -174,7 +237,7 @@ namespace MMFPAdminka
         public MainViewModel()
         {
             _questionAccessor = QuestionAccesors.GetAccessor(QuestionAccessorType.STUB);
-            _questionSetSections = new ObservableCollection<QuestionSection>(_questionAccessor.LoadQuestionSections());
+            Questions = _questionAccessor.LoadQuestionSet();
         }
 
         private void AddSection()
