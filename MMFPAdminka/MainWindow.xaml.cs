@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMFPCommonDataStructures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,6 @@ namespace MMFPAdminka
             InitializeComponent();
             var mainViewModel = new MainViewModel();
             DataContext = mainViewModel;
-            //trvQuestionSections.ItemsSource = mainViewModel.QuestionSections;
         }
     }
 }

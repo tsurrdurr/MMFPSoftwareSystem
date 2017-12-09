@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Security.Cryptography;
 
 namespace MMFPCommonDataStructures
 {
     public class Question : INotifyPropertyChanged
     {
+
+        public byte[] cryptedAnswer;
+
+        private string _text;
+        private IEnumerable<string> _answers;
+        private int? _selectedAnswer;
+        private byte[] _salt;
+
         public string Text
         {
             get { return _text; }
             set
-            {
+            { 
                 if (_text != value)
                 {
                     _text = value;
@@ -31,6 +40,7 @@ namespace MMFPCommonDataStructures
                 }
             }
         }
+
         public int? SelectedAnswer
         {
             get { return _selectedAnswer; }
@@ -44,14 +54,39 @@ namespace MMFPCommonDataStructures
             }
         }
 
+        public byte[] Salt
+        {
+            get { return _salt; }
+            set
+            {
+                if (_salt != value)
+                {
+                    _salt = value;
+                    OnPropertyChanged(nameof(Salt));
+                }
+            }
+        }
+
+        public void EncodeAnswer(int? selected)
+        {
+            if (selected == null) return;
+            var cr = new Crypto.Crypto();
+            Salt = cr.CreateSalt();
+            cryptedAnswer = cr.Encode(2, Salt);
+        }
+
+        public int? DecodeAnswer()
+        {
+            if (Salt == null || cryptedAnswer == null) return null;
+            var cr = new Crypto.Crypto();
+            var dec = cr.Decode(cryptedAnswer, Salt);
+            return dec;
+        }
+
         public override string ToString()
         {
             return Text;
         }
-
-        private string _text;
-        private IEnumerable<string> _answers;
-        private int? _selectedAnswer;
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
