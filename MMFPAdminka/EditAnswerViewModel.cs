@@ -34,10 +34,10 @@ namespace MMFPAdminka
             }
         }
 
-        public string Answer
+        public Answer Answer
         {
             get => Question.Answers.ToList()[_selectedAnswerIndex];
-            set => ((ObservableCollection<string>) Question.Answers)[_selectedAnswerIndex] = value;
+            set => ((ObservableCollection<Answer>) Question.Answers)[_selectedAnswerIndex] = value;
         }
 
         public Command Save => _saveCommand ?? (_saveCommand = new Command(SaveAnswer));

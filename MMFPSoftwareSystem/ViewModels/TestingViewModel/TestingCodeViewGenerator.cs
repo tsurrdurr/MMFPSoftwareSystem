@@ -81,7 +81,7 @@ namespace MMFPSoftwareSystem.Views
                         {
                             Content = answer,
                             GroupName = "Group_" + sectionNumber + "_" + questionNumber,
-                            Tag = new Tuple<Question, string>(question, answer)
+                            //Tag = new Tuple<Question, string>(question, answer)
                         };
                         radio.Checked += Radio_Checked;
                         container.AddChild(radio);
@@ -100,7 +100,7 @@ namespace MMFPSoftwareSystem.Views
         private void Radio_Checked(object sender, RoutedEventArgs e)
         {
             var tag = (sender as RadioButton).Tag as Tuple<Question, string>;
-            tag.Item1.SelectedAnswer = tag.Item1.Answers.ToList().IndexOf(tag.Item2);
+            //tag.Item1.SelectedAnswer = tag.Item1.Answers.ToList().IndexOf(tag.Item2);
         }
 
     }

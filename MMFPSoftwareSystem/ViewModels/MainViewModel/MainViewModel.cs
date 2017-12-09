@@ -164,55 +164,16 @@ namespace MMFPSoftwareSystem
                     new QuestionSection
                     {
                         Name = "SampleSection",
-                        Questions = new List<Question>
-                        {
-                            new Question
-                            {
-                                Text = "Question text",
-                                Answers = new List<string>
-                                {
-                                    "Variant 1",
-                                    "Variant 2",
-                                    "Variant 3"
-                                }
-                            },
-                            new Question
-                            {
-                                Text = "Question text 2",
-                                Answers = new List<string>
-                                {
-                                    "Variant2 1",
-                                    "Variant2 2",
-                                    "Variant2 3"
-                                }
-                            }
-                        }
+                        Questions = new List<Question>()
+                        
+                            
                     },
                     new QuestionSection
                     {
                         Name = "Section 2",
                         Questions = new List<Question>
                         {
-                            new Question
-                            {
-                                Text = "Section 2 Question text",
-                                Answers = new List<string>
-                                {
-                                    "Variant 1",
-                                    "Variant 2",
-                                    "Variant 3"
-                                }
-                            },
-                            new Question
-                            {
-                                Text = "Section 2  Question text 2",
-                                Answers = new List<string>
-                                {
-                                    "Variant2 1",
-                                    "Variant2 2",
-                                    "Variant2 3"
-                                }
-                            }
+                            
                         }
                     }
                 }

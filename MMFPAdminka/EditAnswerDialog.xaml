@@ -11,7 +11,7 @@
         <StackPanel Orientation="Vertical">
             <Label Content="Введите ответ:"/>
             <TextBox
-                      Text="{Binding Answer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      Text="{Binding Answer.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       TextWrapping="Wrap" 
                       VerticalScrollBarVisibility="Auto" 
                       Height="69"/>

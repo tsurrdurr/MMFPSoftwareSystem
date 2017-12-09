@@ -87,12 +87,23 @@
                      ItemsSource="{Binding Answers, Mode=TwoWay}"
                      SelectedItem="{Binding SelectedAnswer, UpdateSourceTrigger=PropertyChanged}"
                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                     
             >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <CheckBox IsChecked="{Binding IsCorrect}"/>
+                            <TextBlock Text="{Binding Text}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
                 <ListBox.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Редактировать ответ..."
                                   Command="{Binding AnswerCRUDCommand}"
                                   CommandParameter="{Binding SelectedQuestion}" />
+                        <MenuItem Header="Пометить как правильный"
+                                  Command="{Binding MarkAnswerCorrectCommand}" />
                     </ContextMenu>
                 </ListBox.ContextMenu>
             </ListBox>
