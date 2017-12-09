@@ -198,8 +198,8 @@ namespace MMFPAdminka
 
         private void EditAnswer()
         {
-            //var editAnswerDialog = new EditAnswerDialog(SelectedAnswer);
-            //editAnswerDialog.Show();
+            var editAnswerDialog = new EditAnswerDialog(SelectedQuestion, SelectedQuestion.Answers.ToList().IndexOf(SelectedAnswer));
+            editAnswerDialog.Show();
         }
 
         //        

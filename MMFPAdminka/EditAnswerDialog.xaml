@@ -6,12 +6,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMFPAdminka"
         mc:Ignorable="d"
-        Title="EditQuestionDialog" Height="154.438" Width="300">
+        Title="EditAnswerDialog" Height="154.438" Width="300">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label Content="Введите ответ:"/>
             <TextBox
-                      Text="{Binding Question.Answers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      Text="{Binding Answer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       TextWrapping="Wrap" 
                       VerticalScrollBarVisibility="Auto" 
                       Height="69"/>

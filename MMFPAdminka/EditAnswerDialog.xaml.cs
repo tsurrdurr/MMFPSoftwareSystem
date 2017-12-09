@@ -8,8 +8,8 @@ namespace MMFPAdminka
     /// </summary>
     public partial class EditAnswerDialog : Window
     {
-        public EditAnswerDialog(Question question)
-            : this(new EditAnswerViewModel(question))
+        public EditAnswerDialog(Question question, int selectedAnswerIndex)
+            : this(new EditAnswerViewModel(question, selectedAnswerIndex))
         {
         }
 
