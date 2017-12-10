@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMFPCommonDataStructures
 {
-    class Group : INotifyPropertyChanged
+    public class Group : INotifyPropertyChanged
     {
         private string _name;
 
@@ -25,16 +25,16 @@ namespace MMFPCommonDataStructures
             }
         }
 
-        private ObservableCollection<Student> _groups;
+        private ObservableCollection<Student> _students;
 
-        public ObservableCollection<Student> Groups
+        public ObservableCollection<Student> Students
         {
-            get { return _groups; }
+            get { return _students; }
             set
             {
-                if (_groups == value) return;
-                _groups = value;
-                OnPropertyChanged(nameof(Groups));
+                if (_students == value) return;
+                _students = value;
+                OnPropertyChanged(nameof(Students));
             }
         }
 

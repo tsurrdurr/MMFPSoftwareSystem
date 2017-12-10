@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\HelpViewModel\HelpViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel\MainViewModel.cs" />
     <Compile Include="ViewModels\ModelingControlsViewModel\ModelingControlsViewModel.cs" />
+    <Compile Include="ViewModels\StudentSelectionViewModel\StudentSelectionViewModel.cs" />
     <Compile Include="ViewModels\TestingViewModel\TestingViewModel.cs" />
     <Compile Include="ViewModels\TheoryViewModel\TheoryViewModel.cs" />
     <Compile Include="Views\UserControls\Extra\HtmlBox.xaml.cs">
@@ -112,6 +113,9 @@
     </Compile>
     <Compile Include="Views\UserControls\TheoryView.xaml.cs">
       <DependentUpon>TheoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\StudentSelectionWindow.xaml.cs">
+      <DependentUpon>StudentSelectionWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\UserControls\Extra\HtmlBox.xaml">
       <SubType>Designer</SubType>
@@ -150,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\TheoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\StudentSelectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

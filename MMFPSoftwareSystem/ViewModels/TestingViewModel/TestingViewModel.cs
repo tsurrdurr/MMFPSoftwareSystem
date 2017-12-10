@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using MMFPCommonDataStructures;
+using MMFPSoftwareSystem.Views.Windows;
 using Newtonsoft.Json;
 
 namespace MMFPSoftwareSystem
@@ -17,8 +19,38 @@ namespace MMFPSoftwareSystem
         {
             this.mainVM = mainVM;
             AvailableTests = ReadAvailableTestsFiles();
-
+            groups = ReadAvailableGroups();
         }
+
+        private GroupSet dummySet = new GroupSet { Groups = new ObservableCollection<Group> { new Group { Name = "Неизвестная группа", Students = new ObservableCollection<Student> { new Student { Name = "Неизвестный студент" } } } } };
+
+        private GroupSet ReadAvailableGroups()
+        {
+            var results = new GroupSet();
+            try
+            {
+                string[] files = Directory.GetFiles(@"Resources\Students", "*.json", SearchOption.AllDirectories);
+                foreach (var file in files)
+                {
+                    var json = File.ReadAllText(file);
+                    var item = JsonConvert.DeserializeObject<GroupSet>(json);
+                    if (item != null)
+                    {
+                        foreach (var gr in item.Groups)
+                        {
+                            results.Groups.Add(gr);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return results.Groups.Count > 0 ? results : dummySet;
+        }
+
+        private GroupSet groups;
 
         private List<QuestionSet> ReadAvailableTestsFiles()
         {
@@ -40,6 +72,8 @@ namespace MMFPSoftwareSystem
         private void SaveResult()
         {
             questionSet.TestingFinished = DateTime.Now;
+            questionSet.StudentName = studentName;
+            questionSet.StudentGroup = groupName;
             var jsonSettings = new JsonSerializerSettings
             {
                 Formatting = Formatting.Indented
@@ -49,7 +83,6 @@ namespace MMFPSoftwareSystem
             {
                 FileName = String.Format("{0} {1}", questionSet.Name, "studentname"),
                 Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
-
             };
             if (dialog.ShowDialog() == true)
             {
@@ -58,6 +91,7 @@ namespace MMFPSoftwareSystem
                 IsCurrentlyTesting = false;
             }
         }
+
 
         public List<QuestionSet> AvailableTests
         {
@@ -87,10 +121,23 @@ namespace MMFPSoftwareSystem
 
         private void StartTest()
         {
-            IsCurrentlyTesting = true;
-            questionSet = SelectedQuestionSet;
-            questionSet.TestingStarted = DateTime.Now;
+            var datacontext = new StudentSelectionViewModel(groups);
+            var window = new StudentSelectionWindow
+            {
+                DataContext = datacontext
+            };
+            if ((bool)window.ShowDialog())
+            {
+                studentName = datacontext.SelectedStudent.Name;
+                groupName = datacontext.SelectedGroup.Name;
+                IsCurrentlyTesting = true;
+                questionSet = SelectedQuestionSet;
+                questionSet.TestingStarted = DateTime.Now;
+            }
         }
+
+        private string studentName;
+        private string groupName;
 
         private void FinishTest()
         {

@@ -29,9 +29,9 @@
             </DockPanel>
             <view:TestingCodeViewGenerator Grid.Row="1" 
                                            Questions="{Binding questionSet}"/>
-                <Button Content="Закончить тест"
-                        Command="{Binding FinishTestCommand}"
-                        Visibility="{Binding IsCurrentlyTesting, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Button Content="Закончить тест"
+                    Command="{Binding FinishTestCommand}"
+                    Visibility="{Binding IsCurrentlyTesting, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
     </ScrollViewer>
 </UserControl>
