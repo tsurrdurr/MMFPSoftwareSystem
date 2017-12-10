@@ -37,7 +37,10 @@ namespace MMFPSoftwareSystem.Views
                 {
                     LoadQuestions(Questions);
                 }
-
+                else
+                {
+                    Content = null;
+                }
             }
         }
 
@@ -46,12 +49,11 @@ namespace MMFPSoftwareSystem.Views
             InitializeComponent();
         }
 
-
-
         private void InitializeComponent()
         {
             var panel = new StackPanel();
             IAddChild container = panel;
+            if (Questions.Sections == null) { this.UpdateLayout(); return;};
             var setText = new TextBlock
             {
                 Text = "Тема теста: \"" + Questions.Name + "\""
@@ -81,7 +83,7 @@ namespace MMFPSoftwareSystem.Views
                         {
                             Content = answer,
                             GroupName = "Group_" + sectionNumber + "_" + questionNumber,
-                            //Tag = new Tuple<Question, string>(question, answer)
+                            Tag = new Tuple<Question, Answer>(question, answer)
                         };
                         radio.Checked += Radio_Checked;
                         container.AddChild(radio);
@@ -99,8 +101,8 @@ namespace MMFPSoftwareSystem.Views
 
         private void Radio_Checked(object sender, RoutedEventArgs e)
         {
-            var tag = (sender as RadioButton).Tag as Tuple<Question, string>;
-            //tag.Item1.SelectedAnswer = tag.Item1.Answers.ToList().IndexOf(tag.Item2);
+            var tag = (sender as RadioButton).Tag as Tuple<Question, Answer>;
+            tag.Item1.SelectedAnswer = tag.Item1.Answers.ToList().IndexOf(tag.Item2);
         }
 
     }

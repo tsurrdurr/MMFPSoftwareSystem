@@ -12,6 +12,7 @@
         <Grid>
             <Grid.Resources>
                 <helper:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                <helper:InverseBooleanConverter x:Key="Invertor"/>
             </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -21,16 +22,16 @@
                 <ComboBox ItemsSource="{Binding AvailableTests}"
                           SelectedItem="{Binding SelectedQuestionSet}"
                           IsEditable="False"
-                          IsEnabled="{Binding IsNotCurrentlyTesting}"/>
+                          IsEnabled="{Binding IsCurrentlyTesting, Converter={StaticResource Invertor}}"/>
                 <Button Content="Начать тестирование" 
                         Command="{Binding StartTestCommand}"
-                        IsEnabled="{Binding IsNotCurrentlyTesting}"/>
+                        IsEnabled="{Binding IsCurrentlyTesting, Converter={StaticResource Invertor}}"/>
             </DockPanel>
             <view:TestingCodeViewGenerator Grid.Row="1" 
                                            Questions="{Binding questionSet}"/>
-                <!--<Button Content="Закончить тест"
+                <Button Content="Закончить тест"
                         Command="{Binding FinishTestCommand}"
-                        Visibility="{Binding IsNotCurrentlyTesting, Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+                        Visibility="{Binding IsCurrentlyTesting, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
     </ScrollViewer>
 </UserControl>

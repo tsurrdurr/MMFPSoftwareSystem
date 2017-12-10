@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 using MMFPCommonDataStructures;
 using Newtonsoft.Json;
 
@@ -36,15 +37,26 @@ namespace MMFPSoftwareSystem
         public Command StartTestCommand => _startTestCommand ?? (_startTestCommand = new Command(StartTest));
         public Command FinishTestCommand => _finishTestCommand ?? (_finishTestCommand = new Command(FinishTest));
 
-        private void FinishTest()
-        {
-            IsNotCurrentlyTesting = false;
-            SaveResult();
-        }
-
         private void SaveResult()
         {
-            //TODO: add code
+            questionSet.TestingFinished = DateTime.Now;
+            var jsonSettings = new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented
+            };
+            string output = JsonConvert.SerializeObject(questionSet, jsonSettings);
+            var dialog = new SaveFileDialog
+            {
+                FileName = String.Format("{0} {1}", questionSet.Name, "studentname"),
+                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
+
+            };
+            if (dialog.ShowDialog() == true)
+            {
+                File.WriteAllText(dialog.FileName, output);
+                questionSet = null;
+                IsCurrentlyTesting = false;
+            }
         }
 
         public List<QuestionSet> AvailableTests
@@ -60,24 +72,29 @@ namespace MMFPSoftwareSystem
             }
         }
 
-        public bool IsNotCurrentlyTesting
+        public bool IsCurrentlyTesting
         {
-            get { return _isNotCurrentlyTesting; }
+            get { return _isCurrentlyTesting; }
             set
             {
-                if (_isNotCurrentlyTesting != value)
+                if (_isCurrentlyTesting != value)
                 {
-                    _isNotCurrentlyTesting = value;
-                    OnPropertyChanged(nameof(IsNotCurrentlyTesting));
+                    _isCurrentlyTesting = value;
+                    OnPropertyChanged(nameof(IsCurrentlyTesting));
                 }
             }
         }
 
         private void StartTest()
         {
-            IsNotCurrentlyTesting = true;
+            IsCurrentlyTesting = true;
             questionSet = SelectedQuestionSet;
-            //GetQuestions(mainVM.CreatePredefinedQuestionSet());
+            questionSet.TestingStarted = DateTime.Now;
+        }
+
+        private void FinishTest()
+        {
+            SaveResult();
         }
 
         public QuestionSet SelectedQuestionSet
@@ -124,7 +141,7 @@ namespace MMFPSoftwareSystem
         private QuestionSet _questionSet = null;
         private Command _startTestCommand;
         private List<QuestionSet> _availableTests;
-        private bool _isNotCurrentlyTesting = true;
+        private bool _isCurrentlyTesting = false;
         private Command _finishTestCommand;
         private QuestionSet _selectedQuestionSet;
 
