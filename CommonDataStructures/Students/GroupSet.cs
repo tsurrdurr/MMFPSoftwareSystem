@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace MMFPCommonDataStructures
 {
-    class GroupSet : INotifyPropertyChanged
+    public class GroupSet : INotifyPropertyChanged
     {
         public DateTime CreatedAt;
         public DateTime ModifiedAt;
 
         public ObservableCollection<Group> Groups
         {
-            get { return _groups; }
+            get { return _groups ?? new ObservableCollection<Group>(); }
             set
             {
                 if (_groups == value) return;

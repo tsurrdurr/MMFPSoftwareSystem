@@ -1,0 +1,41 @@
+﻿<Window x:Class="MMFPSoftwareSystem.Views.Windows.StudentSelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MMFPSoftwareSystem.Views.Windows"
+        mc:Ignorable="d"
+        x:Name="StudentWindoW"
+        Title="Выберите себя в списке студентов" Height="110.909" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <ComboBox ItemsSource="{Binding Groups}" 
+                      SelectedItem="{Binding SelectedGroup}" 
+                      SelectedValuePath="Name"
+                      DisplayMemberPath="Name"
+                      IsEditable="False"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <ComboBox ItemsSource="{Binding Students}" 
+                      SelectedItem="{Binding SelectedStudent}" 
+                      SelectedValuePath="Name"
+                      DisplayMemberPath="Name"
+                      IsEditable="False"/>
+        </StackPanel>
+        <DockPanel Grid.Row="2" >
+            <Button Content="ОК" 
+                    Command="{Binding OkCommand}" 
+                    CommandParameter="{Binding ElementName=StudentWindoW}" 
+                    Width="144"/>
+            <Button Content="Отмена" 
+                    Command="{Binding CancelCommand}"
+                    CommandParameter="{Binding ElementName=StudentWindoW}"/>
+
+        </DockPanel>
+    </Grid>
+</Window>

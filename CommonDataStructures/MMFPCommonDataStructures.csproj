@@ -30,6 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +47,8 @@
     <Compile Include="Abstract\ITestingViewModel.cs" />
     <Compile Include="Abstract\ITheoryViewModel.cs" />
     <Compile Include="Crypto\Crypto.cs" />
+    <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
+    <Compile Include="Helpers\InverseBoolConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Answer.cs" />
     <Compile Include="Question.cs" />

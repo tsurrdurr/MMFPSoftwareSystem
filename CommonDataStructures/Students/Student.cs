@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMFPCommonDataStructures
 {
-    class Student : INotifyPropertyChanged
+    public class Student : INotifyPropertyChanged
     {
         private string _name;
 
