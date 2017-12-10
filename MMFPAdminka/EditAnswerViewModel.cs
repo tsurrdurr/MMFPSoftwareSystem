@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,11 +14,13 @@ namespace MMFPAdminka
     public class EditAnswerViewModel : Window, INotifyPropertyChanged
     {
         private Question _question;
+        private int _selectedAnswerIndex;
         private Command _saveCommand;
 
-        public EditAnswerViewModel(Question question)
+        public EditAnswerViewModel(Question question, int selectedAnswerIndex)
         {
             Question = question;
+            _selectedAnswerIndex = selectedAnswerIndex;
         }
 
         public Question Question
@@ -29,6 +32,12 @@ namespace MMFPAdminka
                 _question = value;
                 OnPropertyChanged(nameof(Question));
             }
+        }
+
+        public Answer Answer
+        {
+            get => Question.Answers.ToList()[_selectedAnswerIndex];
+            set => ((ObservableCollection<Answer>) Question.Answers)[_selectedAnswerIndex] = value;
         }
 
         public Command Save => _saveCommand ?? (_saveCommand = new Command(SaveAnswer));

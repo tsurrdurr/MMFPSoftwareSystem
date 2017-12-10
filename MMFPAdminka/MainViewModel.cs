@@ -29,8 +29,8 @@ namespace MMFPAdminka
         private Command _questionSectionCRUDCommand;
         private Command _questionCRUDCommand;
         private Command _answerCrudCommand;
-        private ObservableCollection<string> _answers;
-        private string _selectedAnswer;
+        private ObservableCollection<Answer> _answers;
+        private Answer _selectedAnswer;
         private Command _openTestCommand;
         private Command _saveTestCommand;
 
@@ -68,7 +68,7 @@ namespace MMFPAdminka
             }
         }
 
-        public ObservableCollection<string> Answers
+        public ObservableCollection<Answer> Answers
         {
             get { return _answers; }
             set
@@ -87,7 +87,7 @@ namespace MMFPAdminka
                 if (_selectedSection == value) return;
                 if (value != null)
                 {
-                    SectionsQuestions = value.Questions as ObservableCollection<Question>;
+                    SectionsQuestions = new ObservableCollection<Question>(value.Questions);
                     SelectedQuestion = SectionsQuestions.FirstOrDefault();
                     _selectedSection = value;
                     OnPropertyChanged(nameof(SelectedSection));
@@ -106,12 +106,12 @@ namespace MMFPAdminka
             {
                 if (_selectedQuestion == value || value == null) return;
                 _selectedQuestion = value;
-                Answers = _selectedQuestion.Answers as ObservableCollection<string>;
+                Answers = _selectedQuestion.Answers as ObservableCollection<Answer>;
                 OnPropertyChanged(nameof(SelectedQuestion));
             }
         }
 
-        public string SelectedAnswer
+        public Answer SelectedAnswer
         {
             get { return _selectedAnswer; }
             set
@@ -132,8 +132,6 @@ namespace MMFPAdminka
 
         public Command QuestionCRUDCommand => _questionCRUDCommand ?? (_questionCRUDCommand = new Command(EditQuestion));
         public Command AnswerCRUDCommand => _answerCrudCommand ?? (_answerCrudCommand = new Command(EditAnswer));
-
-
 
         private void OpenTest()
         {
@@ -198,8 +196,8 @@ namespace MMFPAdminka
 
         private void EditAnswer()
         {
-            //var editAnswerDialog = new EditAnswerDialog(SelectedAnswer);
-            //editAnswerDialog.Show();
+            var editAnswerDialog = new EditAnswerDialog(SelectedQuestion, SelectedQuestion.Answers.ToList().IndexOf(SelectedAnswer));
+            editAnswerDialog.Show();
         }
 
         //        
@@ -223,7 +221,7 @@ namespace MMFPAdminka
         {
             SectionsQuestions.Add(new Question
             {
-                Answers = new ObservableCollection<string>(),
+                Answers = new ObservableCollection<Answer>(),
                 SelectedAnswer = 0,
                 Text = "Новый вопрос"
             });
@@ -231,7 +229,8 @@ namespace MMFPAdminka
 
         private void AddAnswer()
         {
-            Answers.Add("Новый ответ");
+            var ans = new Answer {Text = "Новый "};
+            Answers.Add(ans);
         }
 
         public MainViewModel()
@@ -242,7 +241,7 @@ namespace MMFPAdminka
 
         private void AddSection()
         {
-            _questionSetSections.Add(new QuestionSection
+            QuestionSetSections.Add(new QuestionSection
             {
                 Name = "Новый раздел",
                 Questions = new ObservableCollection<Question>()

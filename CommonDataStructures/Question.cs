@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace MMFPCommonDataStructures
@@ -11,7 +14,7 @@ namespace MMFPCommonDataStructures
         public byte[] cryptedAnswer;
 
         private string _text;
-        private IEnumerable<string> _answers;
+        private IEnumerable<Answer> _answers;
         private int? _selectedAnswer;
         private byte[] _salt;
 
@@ -28,17 +31,63 @@ namespace MMFPCommonDataStructures
             }
         }
 
-        public IEnumerable<string> Answers
+        public IEnumerable<Answer> Answers
         {
-            get { return _answers; }
+            get
+            {
+                if(_answers != null) return _answers;
+                var tempshnyaga = new ObservableCollection<Answer>();
+                tempshnyaga.CollectionChanged += (s, e) =>
+                {
+                    if (e.NewItems?.Count > 0 && (e.Action == NotifyCollectionChangedAction.Add || e.Action == NotifyCollectionChangedAction.Replace))
+                    {
+
+                        foreach (var ans in e.NewItems.OfType<Answer>())
+                        {
+                            if (_answers.Count() <= 1) ans.IsCorrect = true;
+                            ans.PropertyChanged += UpdateCorrectAnswer;
+                        }
+                    }
+                    if (e.OldItems?.Count > 0 && (e.Action == NotifyCollectionChangedAction.Remove || e.Action == NotifyCollectionChangedAction.Replace || e.Action == NotifyCollectionChangedAction.Reset))
+                    {
+                        foreach (var ans in e.OldItems.OfType<Answer>())
+                        {
+                            ans.PropertyChanged -= UpdateCorrectAnswer;
+                        }
+                    }
+                };
+                return _answers = tempshnyaga;
+            } 
             set
             {
-                if (_answers != value)
-                {
-                    _answers = value;
-                    OnPropertyChanged(nameof(Answers));
-                }
+                
             }
+        }
+
+        private void UpdateCorrectAnswer(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Answer.IsCorrect))
+            {
+                Answer ans = sender as Answer;
+                ans.PropertyChanged -= UpdateCorrectAnswer;
+                var correctIndex = Answers.ToList().IndexOf(ans);
+                foreach (var item in Answers)
+                {
+                    if (item != ans)
+                    {
+                        item.PropertyChanged -= UpdateCorrectAnswer;
+                        item.IsCorrect = false;
+                        item.PropertyChanged += UpdateCorrectAnswer;
+
+                    }
+                }
+                ans.IsCorrect = true;
+                SelectedAnswer = correctIndex;
+                ans.PropertyChanged += UpdateCorrectAnswer;
+
+            }
+
+
         }
 
         public int? SelectedAnswer

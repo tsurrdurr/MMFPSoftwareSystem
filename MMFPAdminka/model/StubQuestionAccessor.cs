@@ -17,20 +17,23 @@ namespace MMFPAdminka.model
                     {
                         new Question
                         {
-                            Answers = new ObservableCollection<string>(new List<string>()
+                            Answers = new ObservableCollection<Answer>(new List<Answer>
                             {
-                                "Никак",
-                                "Выпивают водку",
-                                "Концентрируются на продаже природных ресурсов"
+                                new Answer { Text = "Никак" },
+                                new Answer { Text = "Выпивают водку" },
+                                new Answer { Text = "Концентрируются на продаже природных ресурсов" },
                             }),
                             SelectedAnswer = 2,
                             Text = "Как нейтроны замедляются в реакторе?"
                         },
                         new Question
                         {
-                            Answers = new ObservableCollection<string>(new List<string>
+                            Answers = new ObservableCollection<Answer>(new List<Answer>
                             {
-                                "у Васи", "У Пети", "у нейтрона", "промолчать"
+                                new Answer { Text = "у Васи" },
+                                new Answer { Text = "У Пети" },
+                                new Answer { Text = "у нейтрона" },
+                                new Answer { Text = "промолчать" }
                             }),
                             SelectedAnswer = 1,
                             Text = "Студент Вася нажал кнопку \"Ускорить\" вместо \"Замедлить\", а студент Петя прогулял все лекции Рыбиной. У какого объекта скорость вылета больше?"
