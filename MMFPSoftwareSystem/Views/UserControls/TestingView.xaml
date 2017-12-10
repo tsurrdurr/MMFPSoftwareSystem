@@ -5,21 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMFPSoftwareSystem"
              xmlns:view="clr-namespace:MMFPSoftwareSystem.Views"
+             xmlns:helper="clr-namespace:MMFPCommonDataStructures;assembly=MMFPCommonDataStructures"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <d:DesignProperties.DataContext>
-        <local:TestingViewModel />
-    </d:DesignProperties.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <DockPanel Grid.Row="0">
-            <Button Content="Начать тестирование" 
-                    Command="{Binding StartTestCommand}"/>
-        </DockPanel>
-        <view:TestingCodeViewGenerator Grid.Row="1" 
-                                       Questions="{Binding questionSet}"/>
-    </Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+        <Grid>
+            <Grid.Resources>
+                <helper:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <ComboBox ItemsSource="{Binding AvailableTests}"
+                          SelectedItem="{Binding SelectedQuestionSet}"
+                          IsEditable="False"
+                          IsEnabled="{Binding IsNotCurrentlyTesting}"/>
+                <Button Content="Начать тестирование" 
+                        Command="{Binding StartTestCommand}"
+                        IsEnabled="{Binding IsNotCurrentlyTesting}"/>
+            </DockPanel>
+            <view:TestingCodeViewGenerator Grid.Row="1" 
+                                           Questions="{Binding questionSet}"/>
+                <!--<Button Content="Закончить тест"
+                        Command="{Binding FinishTestCommand}"
+                        Visibility="{Binding IsNotCurrentlyTesting, Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+        </Grid>
+    </ScrollViewer>
 </UserControl>

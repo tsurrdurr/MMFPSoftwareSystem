@@ -177,6 +177,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\Tests\file.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Tests\Новый тест.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -184,6 +190,7 @@
   <ItemGroup>
     <Folder Include="Behaviors\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Resources\Students\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\HelpPages\Page1.html">

@@ -1,0 +1,39 @@
+{
+  "CreatedDateTime": "0001-01-01T00:00:00",
+  "ModifiedDateTime": "0001-01-01T00:00:00",
+  "TestingStarted": null,
+  "TestingFinished": null,
+  "StudentName": null,
+  "StudentGroup": null,
+  "Sections": [
+    {
+      "Name": "Исследование процессов замедления",
+      "Questions": [
+        {
+          "cryptedAnswer": null,
+          "Text": "Как нейтроны замедляются в реакторе?",
+          "Answers": [
+            {
+              "Text": "Новый ",
+              "IsCorrect": true
+            },
+            {
+              "Text": "Новый ",
+              "IsCorrect": false
+            }
+          ],
+          "SelectedAnswer": 2,
+          "Salt": null
+        },
+        {
+          "cryptedAnswer": null,
+          "Text": "Студент Вася нажал кнопку \"Ускорить\" вместо \"Замедлить\", а студент Петя прогулял все лекции Рыбиной. У какого объекта скорость вылета больше?",
+          "Answers": [],
+          "SelectedAnswer": 1,
+          "Salt": null
+        }
+      ]
+    }
+  ],
+  "Name": "Тестовый тест (лол)"
+}
