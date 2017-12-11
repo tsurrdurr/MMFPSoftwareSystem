@@ -21,14 +21,14 @@
         </Grid.RowDefinitions>
         <Grid Row="0">
             <Menu>
-                <MenuItem Header="File">
-                    <MenuItem Header="Open test"
+                <MenuItem Header="Файл">
+                    <MenuItem Header="Открыть тест"
                               Command="{Binding OpenTestCommand}" />
-                    <MenuItem Header="Save test"
+                    <MenuItem Header="Сохранить тест"
                               Command="{Binding SaveTestCommand}" />
 
                 </MenuItem>
-                <MenuItem Header="About" />
+                <MenuItem Header="О программе" />
             </Menu>
         </Grid>
         <Grid Grid.Row="1">
