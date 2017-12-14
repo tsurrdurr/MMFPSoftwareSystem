@@ -10,7 +10,7 @@ using MMFPSoftwareSystem.Views.Windows;
 
 namespace MMFPSoftwareSystem
 {
-    class StudentSelectionViewModel
+    class StudentSelectionViewModel : INotifyPropertyChanged
     {
         public Command OkCommand => _OkCommand ?? (_OkCommand = new Command(Ok));
 
@@ -77,7 +77,8 @@ namespace MMFPSoftwareSystem
             {
                 if (_selectedGroup == value) return;
                 _selectedGroup = value;
-                Students = value.Students;
+                Students = _selectedGroup.Students;
+                SelectedStudent = Students.FirstOrDefault();
                 OnPropertyChanged(nameof(SelectedGroup));
             }
         }

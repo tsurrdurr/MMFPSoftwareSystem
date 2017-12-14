@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <DockPanel Grid.Row="0">
+            <StackPanel Grid.Row="0">
                 <ComboBox ItemsSource="{Binding AvailableTests}"
                           SelectedItem="{Binding SelectedQuestionSet}"
                           IsEditable="False"
@@ -26,7 +26,7 @@
                 <Button Content="Начать тестирование" 
                         Command="{Binding StartTestCommand}"
                         IsEnabled="{Binding IsCurrentlyTesting, Converter={StaticResource Invertor}}"/>
-            </DockPanel>
+            </StackPanel>
             <view:TestingCodeViewGenerator Grid.Row="1" 
                                            Questions="{Binding questionSet}"/>
             <Button Content="Закончить тест"

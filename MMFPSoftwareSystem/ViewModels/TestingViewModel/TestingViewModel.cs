@@ -101,6 +101,7 @@ namespace MMFPSoftwareSystem
                 if (_availableTests != value)
                 {
                     _availableTests = value;
+                    SelectedQuestionSet = _availableTests.FirstOrDefault();
                     OnPropertyChanged(nameof(AvailableTests));
                 }
             }

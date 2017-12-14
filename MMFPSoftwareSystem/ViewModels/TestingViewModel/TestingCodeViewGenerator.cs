@@ -81,7 +81,7 @@ namespace MMFPSoftwareSystem.Views
                     {
                         var radio = new RadioButton
                         {
-                            Content = answer,
+                            Content = answer.Text,
                             GroupName = "Group_" + sectionNumber + "_" + questionNumber,
                             Tag = new Tuple<Question, Answer>(question, answer)
                         };
