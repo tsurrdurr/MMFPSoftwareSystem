@@ -52,6 +52,7 @@ namespace MMFPSoftwareSystem.Views
         private void InitializeComponent()
         {
             var panel = new StackPanel();
+            panel.Orientation = Orientation.Vertical;
             IAddChild container = panel;
             if (Questions.Sections == null) { this.UpdateLayout(); return;};
             var setText = new TextBlock
@@ -73,7 +74,10 @@ namespace MMFPSoftwareSystem.Views
                 {
                     var questionText = new TextBlock
                     {
-                        Text = questionNumber + ". " + question.Text
+                        Text = questionNumber + ". " + question.Text,
+                        TextWrapping = TextWrapping.Wrap,
+                        HorizontalAlignment = HorizontalAlignment.Left,
+                        Width = 650d
                     };
                     container.AddChild(questionText);
                     int answerNumber = 1;
