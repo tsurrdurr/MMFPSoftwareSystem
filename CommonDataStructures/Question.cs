@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -17,6 +18,7 @@ namespace MMFPCommonDataStructures
         private IEnumerable<Answer> _answers;
         private int? _selectedAnswer;
         private byte[] _salt;
+        private bool _testIsCheckable;
 
         public string Text
         {
@@ -116,11 +118,25 @@ namespace MMFPCommonDataStructures
             }
         }
 
+        public bool TestIsCheckable
+        {
+            get { return _testIsCheckable; }
+            set
+            {
+                if (_testIsCheckable != value)
+                {
+                    _testIsCheckable = value;
+                    OnPropertyChanged(nameof(TestIsCheckable));
+                }
+            }
+        }
+
         public void EncodeAnswer(int? selected)
         {
             if (selected == null) return;
             var cr = new Crypto.Crypto();
             Salt = cr.CreateSalt();
+            Salt[0] = (byte)(Salt[0] ^ BitConverter.GetBytes(TestIsCheckable)[0]);
             cryptedAnswer = cr.Encode(2, Salt);
         }
 

@@ -68,6 +68,8 @@ namespace MMFPSoftwareSystem
         private MainViewModel mainVM;
         public Command StartTestCommand => _startTestCommand ?? (_startTestCommand = new Command(StartTest));
         public Command FinishTestCommand => _finishTestCommand ?? (_finishTestCommand = new Command(FinishTest));
+        public Command CheckTestCommand => _checkTestCommand ?? (_checkTestCommand = new Command(CheckTest));
+
 
         private void SaveResult()
         {
@@ -120,6 +122,33 @@ namespace MMFPSoftwareSystem
             }
         }
 
+        public bool TestIsCheckable
+        {
+            get { return _testIsCheckable; }
+            set
+            {
+                if (_testIsCheckable != value)
+                {
+                    _testIsCheckable = value;
+                    OnPropertyChanged(nameof(TestIsCheckable));
+                }
+            }
+        }
+
+
+        public bool TestIsFinished
+        {
+            get { return _testIsFinished; }
+            set
+            {
+                if (_testIsFinished != value)
+                {
+                    _testIsFinished = value;
+                    OnPropertyChanged(nameof(TestIsFinished));
+                }
+            }
+        }
+
         private void StartTest()
         {
             var datacontext = new StudentSelectionViewModel(groups);
@@ -143,6 +172,15 @@ namespace MMFPSoftwareSystem
         private void FinishTest()
         {
             SaveResult();
+            if(!TestIsFinished) CheckTest();
+            TestIsFinished = true;
+        }
+
+
+
+        private void CheckTest()
+        {
+            
         }
 
         public QuestionSet SelectedQuestionSet
@@ -192,6 +230,9 @@ namespace MMFPSoftwareSystem
         private bool _isCurrentlyTesting = false;
         private Command _finishTestCommand;
         private QuestionSet _selectedQuestionSet;
+        private bool _testIsCheckable = true;
+        private Command _checkTestCommand;
+        private bool _testIsFinished;
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
