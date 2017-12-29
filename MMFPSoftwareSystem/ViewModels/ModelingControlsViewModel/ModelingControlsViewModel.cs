@@ -51,10 +51,11 @@ namespace MMFPSoftwareSystem
             }
             if (points.Count > 1)
             {
-                Graph.PlotGraph(points, title);
+                //Graph.PlotGraph(points, title);
             }
-            Graph.PlotGraph(points2, "xyu");
-
+            //Graph.PlotGraph(points2, null);
+            Graph.PlotSeveralGraphs(new List<List<Tuple<double, double>>> { points, points2 });
+            
         }
 
         private Tuple<double, double> Tuplify(double x, double y)

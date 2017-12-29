@@ -10,5 +10,6 @@ namespace MMFPCommonDataStructures
     public interface IGraphViewModel
     {
         void PlotGraph(List<Tuple<double, double>> coordinates, string header);
+        void PlotSeveralGraphs(List<List<Tuple<double, double>>> coordinates);
     }
 }

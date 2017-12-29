@@ -11,10 +11,11 @@
         <local:GraphViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <oxy:Plot Title="{Binding Title}">
-            <oxy:Plot.Series>
+
+        <oxy:PlotView  Model="{Binding MyPlotModel, UpdateSourceTrigger=PropertyChanged}">
+            <!--<oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding Points}"/>
-            </oxy:Plot.Series>
-        </oxy:Plot>
+            </oxy:Plot.Series>-->
+        </oxy:PlotView>
     </Grid>
 </UserControl>
