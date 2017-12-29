@@ -23,6 +23,8 @@
             <StackPanel Grid.Row="0">
                 <ComboBox ItemsSource="{Binding AvailableTests}"
                           SelectedItem="{Binding SelectedQuestionSet}"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="Name"
                           IsEditable="False"
                           IsEnabled="{Binding IsCurrentlyTesting, Converter={StaticResource Invertor}}"/>
                 <Button Content="Начать тестирование" 

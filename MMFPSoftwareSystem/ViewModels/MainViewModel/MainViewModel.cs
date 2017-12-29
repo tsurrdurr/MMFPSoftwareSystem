@@ -52,6 +52,12 @@ namespace MMFPSoftwareSystem
         public Command OpenHelpCommand => _openHelpCommand ?? (_openHelpCommand = new Command(OpenHelp));
         public Command ExportModelingSettingsCommand => _exportModelingSettingsCommand ?? (_exportModelingSettingsCommand = new Command(ExportModelingSettings));
         public Command ImportModelingSettingsCommand => _importModelingSettingsCommand ?? (_importModelingSettingsCommand = new Command(ImportModelingSettings));
+        public Command ExitCommand => _exitCommand ?? (_exitCommand = new Command(Exit));
+
+        private void Exit()
+        {
+            Application.Current.Shutdown();
+        }
 
         private void ImportModelingSettings()
         {
@@ -206,6 +212,7 @@ namespace MMFPSoftwareSystem
         private Topic _currentTopic;
         private Command _exportModelingSettingsCommand;
         private Command _importModelingSettingsCommand;
+        private Command _exitCommand;
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

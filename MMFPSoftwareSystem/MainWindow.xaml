@@ -17,7 +17,11 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="Файл"/>
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход"
+                              Command="{Binding ExitCommand}"/>
+
+            </MenuItem>
             <MenuItem Header="Настройки">
                 <MenuItem Header="Моделирование...">
                     <MenuItem Header="Экспорт..."
@@ -25,8 +29,6 @@
                     <MenuItem Header="Импорт..."
                               Command="{Binding ImportModelingSettingsCommand}"/>
                 </MenuItem>
-                <MenuItem Header="Админка..."
-                          Command="{Binding OpenAdminCommand}"/>
             </MenuItem>
             <MenuItem Header="О программе">
                 <MenuItem Header="Помощь..."

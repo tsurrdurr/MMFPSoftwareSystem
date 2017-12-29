@@ -190,9 +190,6 @@
     <None Include="Resources\Students\Default.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Tests\file.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\Tests\Новый тест.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

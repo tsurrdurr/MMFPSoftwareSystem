@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="HelpView" Height="300" Width="300">
     <Grid>
-        
+        <TextBox Text="{Binding Text, Mode=OneWay}"
+                 TextWrapping="Wrap"
+                 />
+
     </Grid>
 </Window>

@@ -128,10 +128,12 @@ namespace MMFPAdminka
         public Command AddQuestionCommand => _addQuestionCommand ?? (_addQuestionCommand = new Command(AddQuestion));
         public Command AddAnswerCommand => _addAnswerCommand ?? (_addAnswerCommand = new Command(AddAnswer));
 
+
         public Command QuestionSectionCRUDCommand => _questionSectionCRUDCommand ?? (_questionSectionCRUDCommand = new Command(EditSection));
 
         public Command QuestionCRUDCommand => _questionCRUDCommand ?? (_questionCRUDCommand = new Command(EditQuestion));
         public Command AnswerCRUDCommand => _answerCrudCommand ?? (_answerCrudCommand = new Command(EditAnswer));
+
 
         private void OpenTest()
         {
