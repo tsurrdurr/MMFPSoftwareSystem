@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MMFPCommonDataStructures;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace MMFPSoftwareSystem
 {
@@ -38,6 +39,11 @@ namespace MMFPSoftwareSystem
         private IGraphViewModel Graph;
         private Command _plotLogarithmCommand;
         private double _logarithmUpperLimitString;
+        private ObservableCollection<Slower> _slowersType;
+        private double _startingEnergy = 12d;
+        private double _finishingEnergy = 3d;
+        private int _neutronsAmount = 3;
+        private Slower _selectedSlower;
 
         private void PlotLogarithm()
         {
@@ -57,6 +63,72 @@ namespace MMFPSoftwareSystem
             Graph.PlotSeveralGraphs(new List<List<Tuple<double, double>>> { points, points2 });
             
         }
+
+        public ObservableCollection<Slower> SlowersType
+        {
+            get { return _slowersType ?? (_slowersType = new SlowersList().Slowers); }
+            set
+            {
+                if(_slowersType != value)
+                {
+                    _slowersType = value;
+                    OnPropertyChanged(nameof(SlowersType));
+                }
+            }
+        }
+
+        public Slower SelectedSlower
+        {
+            get { return _selectedSlower ?? (_selectedSlower = SlowersType.FirstOrDefault()); }
+            set
+            {
+                if (_selectedSlower != value)
+                {
+                    _selectedSlower = value;
+                    OnPropertyChanged(nameof(SelectedSlower));
+                }
+            }
+        }
+
+        public double StartingEnegry
+        {
+            get { return _startingEnergy; }
+            set
+            {
+                if(_startingEnergy != value)
+                {
+                    _startingEnergy = value;
+                    OnPropertyChanged(nameof(StartingEnegry));
+                }
+            }
+        }
+
+        public double FinishingEnergy
+        {
+            get { return _finishingEnergy; }
+            set
+            {
+                if (_finishingEnergy != value)
+                {
+                    _finishingEnergy = value;
+                    OnPropertyChanged(nameof(FinishingEnergy));
+                }
+            }
+        }
+        public int NeutronsAmount
+        {
+            get { return _neutronsAmount; }
+            set
+            {
+                if (_neutronsAmount != value)
+                {
+                    _neutronsAmount = value;
+                    OnPropertyChanged(nameof(NeutronsAmount));
+                }
+            }
+        }
+        
+
 
         private Tuple<double, double> Tuplify(double x, double y)
         {

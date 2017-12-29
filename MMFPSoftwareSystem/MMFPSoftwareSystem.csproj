@@ -84,6 +84,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\Slower.cs" />
+    <Compile Include="Models\SlowersList.cs" />
     <Compile Include="ViewModels\AdminViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModels\GraphViewModel\GraphViewModel.cs" />
     <Compile Include="ViewModels\HelpViewModel\HelpViewModel.cs" />
