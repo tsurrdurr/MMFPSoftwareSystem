@@ -18,6 +18,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
                 <ComboBox ItemsSource="{Binding AvailableTests}"
@@ -30,7 +31,8 @@
             </StackPanel>
             <view:TestingCodeViewGenerator Grid.Row="1" 
                                            Questions="{Binding questionSet}"/>
-            <Grid Row="2">
+            <TextBlock Grid.Row="2" Text="{Binding TestResult}" Visibility="{Binding TestIsFinished}"/>
+            <Grid Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>

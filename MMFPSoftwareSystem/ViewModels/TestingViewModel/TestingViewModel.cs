@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using MMFPCommonDataStructures;
+using MMFPSoftwareSystem.Helpers;
 using MMFPSoftwareSystem.Views.Windows;
 using Newtonsoft.Json;
 
@@ -66,6 +67,18 @@ namespace MMFPSoftwareSystem
         }
 
         private MainViewModel mainVM;
+        private string _testResult;
+
+        public String TestResult
+        {
+            get => _testResult;
+            set
+            {
+                if (_testResult == value) return;
+                _testResult = value;
+                OnPropertyChanged(nameof(TestResult));
+            }
+        }
         public Command StartTestCommand => _startTestCommand ?? (_startTestCommand = new Command(StartTest));
         public Command FinishTestCommand => _finishTestCommand ?? (_finishTestCommand = new Command(FinishTest));
         public Command CheckTestCommand => _checkTestCommand ?? (_checkTestCommand = new Command(CheckTest));
@@ -176,11 +189,10 @@ namespace MMFPSoftwareSystem
             TestIsFinished = true;
         }
 
-
-
         private void CheckTest()
         {
-            
+            int correctPercent = TestChecker.checkTest(SelectedQuestionSet);
+            TestResult = $"{correctPercent} % правильных ответов.";
         }
 
         public QuestionSet SelectedQuestionSet

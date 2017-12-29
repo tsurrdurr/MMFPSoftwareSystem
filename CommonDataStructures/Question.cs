@@ -148,6 +148,11 @@ namespace MMFPCommonDataStructures
             return dec;
         }
 
+        public bool IsCorrect()
+        {
+            return SelectedAnswer + 1 == DecodeAnswer();
+        }
+
         public override string ToString()
         {
             return Text;

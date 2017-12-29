@@ -10,30 +10,45 @@
       "Name": "Исследование процессов замедления",
       "Questions": [
         {
-          "cryptedAnswer": null,
+          "cryptedAnswer": "Qa81iHZpBsv/tYzaoHAOeA==",
           "Text": "Как нейтроны замедляются в реакторе?",
+          "Answers": [
+            {
+              "Text": "Никак",
+              "IsCorrect": false
+            },
+            {
+              "Text": "Как-то",
+              "IsCorrect": true
+            }
+          ],
+          "SelectedAnswer": 1,
+          "Salt": "s7C36mdtURYxhcUq1tzotw==",
+          "TestIsCheckable": false
+        },
+        {
+          "cryptedAnswer": "daiQFn7kIWE/ewK25zxMMQ==",
+          "Text": "Студент Вася нажал кнопку \"Ускорить\" вместо \"Замедлить\", а студент Петя прогулял все лекции Рыбиной. У какого объекта скорость вылета больше?",
           "Answers": [
             {
               "Text": "Новый ",
               "IsCorrect": true
             },
             {
-              "Text": "Новый 2",
+              "Text": "Старый",
+              "IsCorrect": false
+            },
+            {
+              "Text": "Какой-то",
               "IsCorrect": false
             }
           ],
-          "SelectedAnswer": 2,
-          "Salt": null
-        },
-        {
-          "cryptedAnswer": null,
-          "Text": "Студент Вася нажал кнопку \"Ускорить\" вместо \"Замедлить\", а студент Петя прогулял все лекции Рыбиной. У какого объекта скорость вылета больше?",
-          "Answers": [],
           "SelectedAnswer": 1,
-          "Salt": null
+          "Salt": "rEDGf60VAyx9A3FIkE122w==",
+          "TestIsCheckable": false
         }
       ]
     }
   ],
-  "Name": "Тестовый тест"
+  "Name": null
 }
