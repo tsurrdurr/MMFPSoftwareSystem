@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using MMFPCommonDataStructures;
+using MMFPSoftwareSystem.Helpers;
 using MMFPSoftwareSystem.Views.Windows;
 using Newtonsoft.Json;
 
@@ -66,8 +67,22 @@ namespace MMFPSoftwareSystem
         }
 
         private MainViewModel mainVM;
+        private string _testResult;
+
+        public String TestResult
+        {
+            get => _testResult;
+            set
+            {
+                if (_testResult == value) return;
+                _testResult = value;
+                OnPropertyChanged(nameof(TestResult));
+            }
+        }
         public Command StartTestCommand => _startTestCommand ?? (_startTestCommand = new Command(StartTest));
         public Command FinishTestCommand => _finishTestCommand ?? (_finishTestCommand = new Command(FinishTest));
+        public Command CheckTestCommand => _checkTestCommand ?? (_checkTestCommand = new Command(CheckTest));
+
 
         private void SaveResult()
         {
@@ -101,6 +116,7 @@ namespace MMFPSoftwareSystem
                 if (_availableTests != value)
                 {
                     _availableTests = value;
+                    SelectedQuestionSet = _availableTests.FirstOrDefault();
                     OnPropertyChanged(nameof(AvailableTests));
                 }
             }
@@ -115,6 +131,33 @@ namespace MMFPSoftwareSystem
                 {
                     _isCurrentlyTesting = value;
                     OnPropertyChanged(nameof(IsCurrentlyTesting));
+                }
+            }
+        }
+
+        public bool TestIsCheckable
+        {
+            get { return _testIsCheckable; }
+            set
+            {
+                if (_testIsCheckable != value)
+                {
+                    _testIsCheckable = value;
+                    OnPropertyChanged(nameof(TestIsCheckable));
+                }
+            }
+        }
+
+
+        public bool TestIsFinished
+        {
+            get { return _testIsFinished; }
+            set
+            {
+                if (_testIsFinished != value)
+                {
+                    _testIsFinished = value;
+                    OnPropertyChanged(nameof(TestIsFinished));
                 }
             }
         }
@@ -142,6 +185,14 @@ namespace MMFPSoftwareSystem
         private void FinishTest()
         {
             SaveResult();
+            if(!TestIsFinished) CheckTest();
+            TestIsFinished = true;
+        }
+
+        private void CheckTest()
+        {
+            int correctPercent = TestChecker.checkTest(SelectedQuestionSet);
+            TestResult = $"{correctPercent} % правильных ответов.";
         }
 
         public QuestionSet SelectedQuestionSet
@@ -191,6 +242,9 @@ namespace MMFPSoftwareSystem
         private bool _isCurrentlyTesting = false;
         private Command _finishTestCommand;
         private QuestionSet _selectedQuestionSet;
+        private bool _testIsCheckable = true;
+        private Command _checkTestCommand;
+        private bool _testIsFinished;
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

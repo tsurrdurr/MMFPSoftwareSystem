@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MMFPSoftwareSystem.Views.Windows"
         mc:Ignorable="d"
         x:Name="StudentWindoW"
-        Title="Выберите себя в списке студентов" Height="110.909" Width="300" ResizeMode="NoResize">
+        Title="Выберите себя в списке студентов" Height="110.909" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -14,15 +14,15 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <ComboBox ItemsSource="{Binding Groups}" 
-                      SelectedItem="{Binding SelectedGroup}" 
+            <ComboBox ItemsSource="{Binding Groups, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                      SelectedItem="{Binding SelectedGroup, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                       SelectedValuePath="Name"
                       DisplayMemberPath="Name"
                       IsEditable="False"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <ComboBox ItemsSource="{Binding Students}" 
-                      SelectedItem="{Binding SelectedStudent}" 
+            <ComboBox ItemsSource="{Binding Students, UpdateSourceTrigger=PropertyChanged}" 
+                      SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" 
                       SelectedValuePath="Name"
                       DisplayMemberPath="Name"
                       IsEditable="False"/>

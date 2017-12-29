@@ -169,6 +169,13 @@ namespace MMFPAdminka
             {
                 Formatting = Formatting.Indented
             };
+            foreach (var section in Questions.Sections)
+            {
+                foreach (var question in section.Questions)
+                {
+                    question.EncodeAnswer(question.SelectedAnswer);
+                }
+            }
             string output = JsonConvert.SerializeObject(Questions, jsonSettings);
             var dialog = new SaveFileDialog
             {

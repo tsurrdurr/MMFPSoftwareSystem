@@ -15,7 +15,7 @@ namespace MMFPCommonDataStructures
 
         public ObservableCollection<Group> Groups
         {
-            get { return _groups ?? new ObservableCollection<Group>(); }
+            get { return _groups; }
             set
             {
                 if (_groups == value) return;
@@ -24,7 +24,7 @@ namespace MMFPCommonDataStructures
             }
         }
 
-        private ObservableCollection<Group> _groups;
+        private ObservableCollection<Group> _groups = new ObservableCollection<Group>();
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
