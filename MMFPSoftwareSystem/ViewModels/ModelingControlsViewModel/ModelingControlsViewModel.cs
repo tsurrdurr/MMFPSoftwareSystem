@@ -43,14 +43,18 @@ namespace MMFPSoftwareSystem
         {
             var title = "ln(x)";
             var points = new List<Tuple<double, double>>();
+            var points2 = new List<Tuple<double, double>>();
             for (int i = 0; i < _logarithmUpperLimitString; i++)
             {
                 points.Add(Tuplify(i, Math.Log(i)));
+                points2.Add(Tuplify(i, Math.Log(i) + 3));
             }
             if (points.Count > 1)
             {
                 Graph.PlotGraph(points, title);
             }
+            Graph.PlotGraph(points2, "xyu");
+
         }
 
         private Tuple<double, double> Tuplify(double x, double y)

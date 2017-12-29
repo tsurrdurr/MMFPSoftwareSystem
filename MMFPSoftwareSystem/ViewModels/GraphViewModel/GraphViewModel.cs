@@ -15,9 +15,15 @@ namespace MMFPSoftwareSystem
 
         public void PlotGraph(List<Tuple<double, double>> coordinates, string header = "График")
         {
-            Points = TupleToDataPoint(coordinates); ;
+            var xyeta = Points;
+            foreach (var item in TupleToDataPoint(coordinates))
+            {
+                xyeta.Add(item);
+            }
+            //OnPropertyChanged(nameof(Points));
+            Points = xyeta;
             Title = header;
-        }
+        } 
 
         public string Title
         {
@@ -33,15 +39,14 @@ namespace MMFPSoftwareSystem
         }
 
         public IList<DataPoint> Points
-        {
-            get { return _points; }
+        { //return _currentTopic ?? (_currentTopic = new Topic());
+            get { return _points ?? (_points = new List<DataPoint>()); }
             set
             {
-                if (_points != value)
-                {
+
                     _points = value;
                     OnPropertyChanged(nameof(Points));
-                }
+                
             }
         }
 
