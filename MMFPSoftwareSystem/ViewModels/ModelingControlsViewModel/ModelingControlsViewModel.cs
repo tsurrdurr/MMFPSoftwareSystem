@@ -68,10 +68,16 @@ namespace MMFPSoftwareSystem
             Graph.PlotSeveralGraphs(graphs);
             
         }
+        static float NextFloat(Random random)
+        {
+            double mantissa = (random.NextDouble() * 2.0) - 1.0;
+            double exponent = Math.Pow(2.0, random.Next(0, 1));
+            return (float)(mantissa * exponent);
+        }
 
         private double getRand()
         {
-            return 2 * new Random(1).Next() - 1;
+            return 2 * NextFloat(rand) - 1;
         }
 
         private List<Tuple<double, double>> GenerateTraectory(Slower selectedSlower, double finishing, double starting, int amount)
@@ -83,7 +89,8 @@ namespace MMFPSoftwareSystem
             var eps = Math.Pow(a, 2);
             var einit = starting * 1e6;
             var results = new List<Tuple<double, double>>();
-            var calcluations = new List<Tuple<double, double, double>>();
+            var calcluations = Calculate(eps, finishing, einit, decel, displ);
+
             foreach(var calc in calcluations)
             {
                 results.Add(new Tuple<double, double>(calc.Item1, calc.Item2));
@@ -91,16 +98,18 @@ namespace MMFPSoftwareSystem
             return results;
         }
 
-        private Tuple<double, double, double> Calculate(double eps, double Et, double Einit, double decel, double displ)
+        Random rand = new Random();
+
+        private List<Tuple<double, double, double>> Calculate(double eps, double Et, double Einit, double decel, double displ)
         {
             var e0 = Einit;
             var x = 0f;
             var y = 0f;
             var result = new List<Tuple<double, double, double>>();
-            var gamma = new Random().Next();
+            var gamma = NextFloat(rand);
             while ((gamma <= 0.001) || (1f - gamma <= 0.001))
             {
-                gamma = new Random().Next();
+                gamma = NextFloat(rand);
             }
 
             var mean = Math.Sqrt(displ);
@@ -110,16 +119,14 @@ namespace MMFPSoftwareSystem
             var E1 = (e0 * ((1f + eps) + (1f - eps) * cosTheta)) / 2f;
             var E0 = E1;
             var vert = Math.Sqrt(1 - cosPsi * cosTheta);
-            x = (float)(x + length * cosPsi);
-            if(0 == Math.Floor((decimal)(new Random().Next() * 1000) % 2))
-            {
-                y = (float)(y + length * vert);
 
+            if (NextFloat(rand) > 0)
+            {
+                x = (float)(x + length * cosPsi);
             }
             else
             {
-                y = (float)(y - length * vert);
-
+                x = (float)(x - length * cosPsi);
             }
             result.Add(new Tuple<double, double, double>(x, y, E0));
             //append
@@ -127,17 +134,24 @@ namespace MMFPSoftwareSystem
             {
                 while ((gamma <= 0.001) || (1f - gamma <= 0.001))
                 {
-                    gamma = new Random().Next();
+                    gamma = NextFloat(rand);
                 }
                 mean = Math.Sqrt(decel);
                 length = NextNormalDistributedVal(mean, mean / 3.5f);
                 cosTheta = 1f - 2f * gamma;
                 cosPsi = (decel * cosTheta + 1f) / Math.Sqrt(decel * decel + 2f * decel * cosTheta + 1f);
-                E1 = (e0 * ((1f + eps) + (1f - eps) * cosTheta)) / 2f;
+                E1 = (E0 * ((1f + eps) + (1f - eps) * cosTheta)) / 2f;
                 E0 = E1;
                 vert = Math.Sqrt(1 - cosPsi * cosTheta);
-                x = (float)(x + length * cosPsi);
-                if (0 == Math.Floor((decimal)(new Random().Next() * 1000) % 2))
+                if (NextFloat(rand) > 0)
+                {
+                    x = (float)(x + length * cosPsi);
+                }
+                else
+                {
+                    x = (float)(x - length * cosPsi);
+                }
+                if (NextFloat(rand) > 0)
                 {
                     y = (float)(y + length * vert);
 
@@ -149,7 +163,7 @@ namespace MMFPSoftwareSystem
                 }
                 result.Add(new Tuple<double, double, double>(x, y, E0));
             }
-            return result.Last();
+            return result;
         }
 
         private double NextNormalDistributedVal(double mean, double der)
