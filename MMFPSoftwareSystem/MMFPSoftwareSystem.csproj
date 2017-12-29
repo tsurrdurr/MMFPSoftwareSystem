@@ -83,7 +83,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\TestChecker.cs" />
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\Slower.cs" />
     <Compile Include="Models\SlowersList.cs" />
@@ -197,13 +196,13 @@
     <None Include="Resources\Tests\Новый тест.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Tests\тест.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Behaviors\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\HelpPages\table of contents.html">
