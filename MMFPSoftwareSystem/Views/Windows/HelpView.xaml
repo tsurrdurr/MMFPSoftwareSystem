@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMFPSoftwareSystem.Views"
         mc:Ignorable="d"
-        Title="HelpView" Height="300" Width="300">
+        Title="Справка" Height="300" Width="500">
     <Grid>
         <TextBox Text="{Binding Text, Mode=OneWay}"
                  TextWrapping="Wrap"
+                 IsReadOnly="True" FontSize="16" FontFamily="Calibri"
                  />
 
     </Grid>
