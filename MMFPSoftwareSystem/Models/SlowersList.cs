@@ -16,11 +16,11 @@ namespace MMFPSoftwareSystem
         {
             return new ObservableCollection<Slower>
             {
-                new Slower("Вода", 1),
-                new Slower("Тяжёлая вода", 2),
-                new Slower("Бериллий", 3),
-                new Slower("Оксид бериллия", 4),
-                new Slower("Графит", 5)
+                new Slower("Вода", 6 * 27, 18),
+                new Slower("Тяжёлая вода", 6 * 120, 20),
+                new Slower("Бериллий", 6 * 98, 4),
+                new Slower("Оксид бериллия", 6 * 105, 20),
+                new Slower("Графит", 6 * 350, 14)
             };
         }
 

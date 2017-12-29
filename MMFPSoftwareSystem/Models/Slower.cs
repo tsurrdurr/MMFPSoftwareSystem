@@ -9,14 +9,15 @@ namespace MMFPSoftwareSystem
 {
     public class Slower : INotifyPropertyChanged
     {
-        public Slower(string name, double value)
+        public Slower(string name, double displacement, double decelerator)
         {
             this.Name = name;
-            this.Value = value;
+            this.Displacement = displacement;
+            this.Decelerator = decelerator;
         }
 
 
-        public double Value
+        public double Displacement
         {
             get { return _value; }
             set
@@ -24,7 +25,20 @@ namespace MMFPSoftwareSystem
                 if (_value != value)
                 {
                     _value = value;
-                    OnPropertyChanged(nameof(Value));
+                    OnPropertyChanged(nameof(Displacement));
+                }
+            }
+        }
+
+        public double Decelerator
+        {
+            get { return _decelerator; }
+            set
+            {
+                if (_decelerator != value)
+                {
+                    _decelerator = value;
+                    OnPropertyChanged(nameof(Decelerator));
                 }
             }
         }
@@ -44,6 +58,7 @@ namespace MMFPSoftwareSystem
 
         private string _name;
         private double _value;
+        private double _decelerator;
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
