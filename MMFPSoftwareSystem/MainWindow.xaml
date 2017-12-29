@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MMFPSoftwareSystem"
         xmlns:view="clr-namespace:MMFPSoftwareSystem.Views"
         mc:Ignorable="d"
-        Title="ММФП" Height="350" Width="525">
+        Title="ММФП" Height="600" Width="800">
     <d:DesignProperties.DataContext>
         <local:MainViewModel />
     </d:DesignProperties.DataContext>

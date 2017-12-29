@@ -15,12 +15,13 @@
         <views:HtmlBox HtmlAddress="{Binding HtmlPath}"  
                        x:Name="htmlbox"
                        Grid.Row="0"
+                       
                        />
         <StackPanel Orientation="Horizontal" 
                     Grid.Row="1">
-            <Button Content="Back" 
+            <Button Content="  &lt;-  " 
                     Command="{Binding BackCommand, ElementName=htmlbox}"/>
-            <Button Content="Forward" 
+            <Button Content="  ->  " 
                     Command="{Binding ForwardCommand, ElementName=htmlbox}"/>
         </StackPanel>
     </Grid>

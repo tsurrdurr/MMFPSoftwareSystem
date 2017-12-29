@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:MMFPSoftwareSystem.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
+    <Grid>
+        
         <WebBrowser x:Name="browser" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-    </StackPanel>
+    </Grid>
 </UserControl>
 

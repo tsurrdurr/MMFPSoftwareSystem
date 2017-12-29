@@ -201,12 +201,6 @@
     <Folder Include="Resources\Students\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\HelpPages\Page1.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\HelpPages\Page2.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\HelpPages\table of contents.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
