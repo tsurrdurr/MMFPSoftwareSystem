@@ -10,6 +10,7 @@ using Microsoft.Win32;
 using MMFPCommonDataStructures;
 using MMFPSoftwareSystem.Views.Windows;
 using Newtonsoft.Json;
+using MMFPSoftwareSystem.Helpers;
 
 namespace MMFPSoftwareSystem
 {
@@ -190,8 +191,8 @@ namespace MMFPSoftwareSystem
 
         private void CheckTest()
         {
-            //int correctPercent = TestChecker.checkTest(SelectedQuestionSet);
-            //TestResult = $"{correctPercent} % правильных ответов.";
+            int correctPercent = TestChecker.checkTest(SelectedQuestionSet);
+            TestResult = $"{correctPercent} % правильных ответов.";
         }
 
         public QuestionSet SelectedQuestionSet
